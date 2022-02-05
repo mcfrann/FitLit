@@ -1,14 +1,38 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE  html>
+<html lang="en" dir="ltr">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Fitlit</title>
+    <link rel="stylesheet" href="../src/css/styles.css">
   </head>
   <body>
-    <h1>Activity Tracker</h1>
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+      <section class="wrapper">
+          <section class="header">
+            <h1 class="welcome-message">Hello, Mark!</h1>
+          </section>
+          <section class="tile-container">
+            <div class="user-info">
+            </div> 
 
-<!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-    <script src="bundle.js"></script>
+            <section class="right-side-container">
+              <section class="activity-hydration">
+                <div class="user-activity">
+                </div>
+                <div class="user-hydration">
+                </div>
+              </section>
+              <section class="sleep">
+                <div class="user-sleep">
+                </div>
+              </section>
+            </section>
+
+          </section>
+      </section>
+    <!-- <script src="./Player.js"></script>
+    <script src="./Game.js"></script>
+    <script src="./main.js"></script> -->
+    <script src="bundle.js"></script> 
   </body>
 </html>
