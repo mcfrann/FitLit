@@ -1,5 +1,89 @@
 body, html {
-  background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+  background-color: #001219;
   background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  /* overflow-y: ; */
+  margin: 0px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  /* margin: 20px; */
+}
+
+.header {
+  width: 100%;
+  height: 15%;
+}
+
+.welcome-message {
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.tile-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+div {
+  border-radius: 10px;
+  background-color: #003049;
+}
+
+
+.user-info {
+  height: 96.5%;
+  width: 40%;
+  margin: 10px;
+}
+
+.activity-hydration {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 50%;
+}
+
+.user-activity {
+  width: 50%;
+  height: 94%;
+  margin: 10px;
+}
+
+.user-hydration {
+  width: 50%;
+  height: 94%;
+  margin: 10px;
+}
+
+.sleep {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 46.5%;
+  /* margin: 10px; */
+}
+
+.user-sleep {
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+} 
+
+.right-side-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
   height: 100%;
 }
