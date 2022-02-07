@@ -48,7 +48,4 @@ describe('User', () => {
   it("should return a user's first name only", function () {
     expect(user.returnFirstName()).to.equal("Mae")
   })
-
-  console.log(user.returnFirstName())
-
 });
