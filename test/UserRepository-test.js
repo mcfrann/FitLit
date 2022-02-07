@@ -23,4 +23,8 @@ describe('User Repository', () => {
     expect(userRepo.currentUser).to.equal(userData[1])
   })
 
+  it('should be able to average step goal amongst all users', function() {
+    expect(userRepo.averageStepGoal()).to.equal(6700)
+  })
+
 });
