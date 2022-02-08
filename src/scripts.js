@@ -5,6 +5,7 @@ import User from '../src/user';
 import UserRepository from './UserRepository';
 import './css/styles.css';
 
+const userInfo = document.querySelector('.user-info')
 const userName = document.querySelector('.user-name')
 const welcomeMessage = document.querySelector('.welcome-message')
 
@@ -12,11 +13,24 @@ const userRepo = new UserRepository(userData);
 userRepo.findID(4)
 const user = new User(userRepo.currentUser);
 
-const displayUserInfo = user => {
-  return userName.innerText = `${user.returnFirstName()}`
+const displayUserName = user => {
+  return welcomeMessage.innerText = `Welcome, ${user.returnFirstName()}!`
 }
 
-window.addEventListener("load", displayUserInfo(user));
+const displayUserInfo = user => {
+  return userInfo.innerText = `
+  ${user.name}
+  ${user.email}
+  ${user.address}
+  ${user.strideLength}
+  ${user.dailyStepGoal}
+  ${user.friends}
+  Average amongst all users: ${user.dailyStepGoal} | ${userRepo.averageStepGoal()}
+  `
+}
+
+window.addEventListener("load", displayUserName(user), displayUserInfo(user));
+
 
 
 
