@@ -49,6 +49,7 @@ div {
   height: 96.5%;
   width: 40%;
   margin: 10px;
+  color: white;
 }
 
 .activity-hydration {
@@ -83,7 +84,7 @@ div {
   width: 100%;
   height: 100%;
   margin: 10px;
-} 
+}
 
 .right-side-container {
   display: flex;
