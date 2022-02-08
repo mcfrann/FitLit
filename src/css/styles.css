@@ -7,6 +7,10 @@ body, html {
   margin: 0px;
 }
 
+/* * {
+  outline: 1px solid red;
+} */
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -29,9 +33,10 @@ body, html {
 
 .tile-container {
   display: flex;
-  width: 100%;
+  width: 90%;
   height: 100%;
   padding: 20px;
+  margin: 33px auto;
 }
 
 div {
