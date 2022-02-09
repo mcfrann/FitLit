@@ -1,46 +1,30 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
+
+//----------------- Imports--------------------
 import getUsers from './apiCalls';
-// import {userData, getUsers} from './apiCalls';
 import User from '../src/user';
 import UserRepository from './UserRepository';
 import './css/styles.css';
 
+//----------------- Query Selectors ------------
+const userInfo = document.querySelector('.user-info');
+const userName = document.querySelector('.user-name');
+const welcomeMessage = document.querySelector('.welcome-message');
 
-
-const userInfo = document.querySelector('.user-info')
-const userName = document.querySelector('.user-name')
-const welcomeMessage = document.querySelector('.welcome-message')
-const getRandomIndex = array => Math.floor(Math.random() * array.length);
-
-
+//----------------- Global Vars ------------------
 const userData = [];
 let userRepo = '';
 let user = '';
 
-getUsers().then(data => {
-  data.userData.forEach(user => userData.push(user))
-  userRepo = new UserRepository(userData)
-  userRepo.findID(4)
-  user = new User(userRepo.currentUser);
-  displayUserName(user);
-  displayUserInfo(user)
-});
-console.log(userData)
-
-// const userRepo = new UserRepository(userData);
-// const userRepo = new UserRepository(userData);
-
-// userRepo.findID(getRandomIndex(userRepo.userData))
-console.log(userRepo)
-
-
-// const user = new User(userRepo.currentUser);
-// const user = new User(userRepo.currentUser);
+//---------------- Functions --------------------
+const getRandomID = array => {
+  const randomIndex = Math.floor(Math.random() * array.length);
+  const randomID = array[randomIndex].id;
+  return randomID;
+};
 
 const displayUserName = user => {
-  return welcomeMessage.innerText = `Welcome, ${user.returnFirstName()}!`
-}
+  return welcomeMessage.innerText = `Welcome, ${user.returnFirstName()}!`;
+};
 
 const displayUserInfo = user => {
   return userInfo.innerText = `
@@ -51,11 +35,25 @@ const displayUserInfo = user => {
   ${user.dailyStepGoal}
   ${user.friends}
   Average amongst all users: ${user.dailyStepGoal} | ${userRepo.averageStepGoal()}
-  `
-}
+`};
+
+const generateUserRepo = userData => userRepo = new UserRepository(userData);
+
+const displayCurrentUser = () => {
+  displayUserName(user);
+  displayUserInfo(user);
+};
+
+//---------------- Scripts ------------------------
+getUsers().then(data => {
+  data.userData.forEach(user => userData.push(user));
+  generateUserRepo(userData);
+  userRepo.findID(getRandomID(userData));
+  user = new User(userRepo.currentUser);
+  displayCurrentUser();
+});
 
 
-// window.addEventListener("load", displayUserName(user), displayUserInfo(user));
 
 
 
