@@ -1,6 +1,7 @@
 
 //----------------- Imports--------------------
-import { getUsers, getSleep, getHydration } from './apiCalls';
+// import { getUsers, getSleep, getHydration } from './apiCalls';
+import getAll from './apiCalls';
 import User from '../src/user';
 import UserRepository from './UserRepository';
 import './css/styles.css';
@@ -47,25 +48,29 @@ const displayCurrentUser = () => {
 };
 
 //---------------- Scripts ------------------------
-getUsers().then(data => {
-  data.userData.forEach(user => userData.push(user));
-  generateUserRepo(userData);
-  userRepo.findID(getRandomID(userData));
-  user = new User(userRepo.currentUser);
-  displayCurrentUser();
-  console.log(user.id);
-});
+// getUsers().then(data => {
+//   data.userData.forEach(user => userData.push(user));
+//   generateUserRepo(userData);
+//   userRepo.findID(getRandomID(userData));
+//   user = new User(userRepo.currentUser);
+//   displayCurrentUser();
+//   console.log(user.id);
+// });
 
 
-getHydration().then(data => {
-  console.log(user.id);
-  data.hydrationData.forEach(entry => {
-    if (entry.userID === user.id) {
-      userHydrationData.push(entry)
-    }
-  })
-  console.log(userHydrationData);
-});
+// getHydration().then(data => {
+//   console.log(user.id);
+//   data.hydrationData.forEach(entry => {
+//     if (entry.userID === user.id) {
+//       userHydrationData.push(entry)
+//     }
+//   })
+//   console.log(userHydrationData);
+// });
+
+getAll().then(data => {
+  console.log(data)
+})
 
 
 // getSleep().then(data => {
