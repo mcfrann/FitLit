@@ -1,6 +1,6 @@
 
 //----------------- Imports--------------------
-import { getUsers, getSleep } from './apiCalls';
+import { getUsers, getSleep, getHydration } from './apiCalls';
 import User from '../src/user';
 import UserRepository from './UserRepository';
 import './css/styles.css';
@@ -12,6 +12,7 @@ const welcomeMessage = document.querySelector('.welcome-message');
 
 //----------------- Global Vars ------------------
 const userData = [];
+const userHydrationData = [];
 const sleepData = [];
 let userRepo = '';
 let user = '';
@@ -45,14 +46,6 @@ const displayCurrentUser = () => {
   displayUserInfo(user);
 };
 
-// const displayActivityByDate = (date) => {
-//   activityData.map(user => {
-//     if (user.date === date) {
-//       displayUserActivity();
-//     }
-//   })
-// }
-
 //---------------- Scripts ------------------------
 getUsers().then(data => {
   data.userData.forEach(user => userData.push(user));
@@ -60,12 +53,25 @@ getUsers().then(data => {
   userRepo.findID(getRandomID(userData));
   user = new User(userRepo.currentUser);
   displayCurrentUser();
+  console.log(user.id);
 });
 
-getSleep().then(data => {
-  data.activityData.forEach(user => sleepData.push(user));
-  console.log(activityData);
-})
+
+getHydration().then(data => {
+  console.log(user.id);
+  data.hydrationData.forEach(entry => {
+    if (entry.userID === user.id) {
+      userHydrationData.push(entry)
+    }
+  })
+  console.log(userHydrationData);
+});
+
+
+// getSleep().then(data => {
+//   data.activityData.forEach(user => sleepData.push(user));
+//   console.log(activityData);
+// })
 
 
 

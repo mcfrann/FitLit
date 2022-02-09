@@ -17,6 +17,11 @@ const getSleep = () => {
     .then(response => response.json());
 }
 
-export { getUsers, getSleep };
+const getHydration = () => {
+    return fetch('https://fitlit-api.herokuapp.com/api/v1/hydration')
+    .then(response => response.json());
+}
+
+export { getUsers, getSleep, getHydration };
 
 
