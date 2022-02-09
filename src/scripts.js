@@ -1,6 +1,6 @@
 
 //----------------- Imports--------------------
-import getUsers from './apiCalls';
+import { getUsers, getSleep } from './apiCalls';
 import User from '../src/user';
 import UserRepository from './UserRepository';
 import './css/styles.css';
@@ -12,6 +12,7 @@ const welcomeMessage = document.querySelector('.welcome-message');
 
 //----------------- Global Vars ------------------
 const userData = [];
+const sleepData = [];
 let userRepo = '';
 let user = '';
 
@@ -44,6 +45,14 @@ const displayCurrentUser = () => {
   displayUserInfo(user);
 };
 
+// const displayActivityByDate = (date) => {
+//   activityData.map(user => {
+//     if (user.date === date) {
+//       displayUserActivity();
+//     }
+//   })
+// }
+
 //---------------- Scripts ------------------------
 getUsers().then(data => {
   data.userData.forEach(user => userData.push(user));
@@ -52,6 +61,11 @@ getUsers().then(data => {
   user = new User(userRepo.currentUser);
   displayCurrentUser();
 });
+
+getSleep().then(data => {
+  data.activityData.forEach(user => sleepData.push(user));
+  console.log(activityData);
+})
 
 
 
