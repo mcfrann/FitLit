@@ -1,5 +1,5 @@
 class User {
-  constructor(user, activity) {
+  constructor(user, hydration, sleep, activity) {
     this.id = user.id;
     this.name = user.name;
     this.address = user.address;

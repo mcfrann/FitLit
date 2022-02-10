@@ -1,9 +1,5 @@
 
 //----------------- Imports--------------------
-
-// import { getUsers, getSleep, getHydration } from './apiCalls';
-// import { getAll, userData, sleepData, hydrationData, activityData } from './apiCalls';
-// import { getUsers, getSleep, getHydration } from './apiCalls';
 import fetchAPI from './apiCalls';
 
 // import { getAll, userData, sleepData, hydrationData, activityData } from './apiCalls';
@@ -16,27 +12,53 @@ import './css/styles.css';
 const userInfo = document.querySelector('.user-info');
 const userName = document.querySelector('.user-name');
 const welcomeMessage = document.querySelector('.welcome-message');
+const hydration = document.querySelector(".user-hydration")
+const sleep = document.querySelector(".user-sleep")
+const activity = document.querySelector(".user-activity")
+
+
 
 //----------------- Global Vars ------------------
 let userData = [];
-// let hydrationData = [];
-// let sleepData = [];
-// let activityData = [];
+let hydrationData = [];
+let sleepData = [];
+let activityData = [];
 let userRepo = '';
 let user = '';
 const fetchUserData = fetchAPI.getUserData()
+// const fetchHydrationData = fetchAPI.getHydrationData()
+// const fetchSleepData = fetchAPI.getSleepData()
+// const fetchActivityData = fetchAPI.getActivityData()
+
+
 
 
 
 //---------------- Functions --------------------
 const getRandomID = array => {
-  // console.log(array.userData)
   const randomIndex = array.userData[Math.floor(Math.random() * array.userData.length)];
-  // userData[Math.floor(Math.random() * userData.length)]
-  // console.log(randomIndex)
-  // const randomID = array[randomIndex];
   return randomIndex;
 };
+
+
+const generateNewUser = (userData) => {
+  const getRandomUser = getRandomID(userData)
+  user = new User(getRandomUser)
+  // hydration = new Hydration(hydrationData.filter(entry => {
+  //   entry.id === user.id
+  // }))
+  displayCurrentUser()
+}
+
+const displayCurrentUser = () => {
+  displayUserName(user);
+  displayUserInfo(user);
+  // displayHydration(hydration);
+};
+
+
+
+//---------------- Updating DOM --------------------
 
 const displayUserName = user => {
   return welcomeMessage.innerText = `Welcome, ${user.returnFirstName()}!`;
@@ -55,132 +77,29 @@ const displayUserInfo = user => {
 `};
 
 //NOT WORKING: | ${userRepo.averageStepGoal()
+//
+// const displayHydration = user => {
+//   return hydration.innerText = `
+//   ${hydration.calculateAvgWater()}
+//   `
+// }
 
-Promise.all([fetchUserData]).then(values => {
-  // generateUserRepo(values[0])
-  generateNewUser(values[0])
-})
 
-const generateNewUser = (userData) => {
-  const getRandomUser = getRandomID(userData)
-  // console.log(getRandomUser)
-  user = new User(getRandomUser)
-  displayCurrentUser()
-  console.log(user)
-  // console.log(userRepo)
-}
-// const generateUserRepo = userData => userRepo = new UserRepository(userData);
 
-const displayCurrentUser = () => {
-  displayUserName(user);
-  displayUserInfo(user);
-};
 
 //---------------- Scripts ------------------------
-// getAll()
-// console.log(userData)
+
+Promise.all([fetchUserData])
+.then(values => {
+  // console.log(fetchUserData)
+  // generateUserRepo(values[0])
+  generateNewUser(values[0])
+  // generateNewUser(values[1])
+  // console.log(values[1])
+})
 
 
-
-// getUsers().then(data => {
-//   data.userData.forEach(user => userData.push(user));
-//   generateUserRepo(userData);
-//   userRepo.findID(getRandomID(userData));
-//   user = new User(userRepo.currentUser);
-//   displayCurrentUser();
-//   console.log(user.id);
-// });
-
-
-// getHydration().then(data => {
-//   console.log(user.id);
-//   data.hydrationData.forEach(entry => {
-//     if (entry.userID === user.id) {
-//       userHydrationData.push(entry)
-//     }
-//   })
-//   console.log(userHydrationData);
-// });
-
-// generateUserRepo(userData);
-// userRepo.findID(getRandomID(userData));
-// user = new User(userRepo.currentUser);
-// displayCurrentUser();
-
-// getSleep().then(data => {
-//   data.activityData.forEach(user => sleepData.push(user));
-//   console.log(activityData);
-// })
-
-
-
-
-//   Average amongst all users: ${user.dailyStepGoal} | ${userRepo.averageStepGoal()}
-  `};
-  
-//   const generateUserRepo = userData => userRepo = new UserRepository(userData);
-  
-//   const displayCurrentUser = () => {
-//     displayUserName(user);
-//     displayUserInfo(user);
-//   };
-  
-//   const onPageLoad = () => {
-//     getAll().then(userData => console.log(userData))
-
-//   }
-  
-  
-  //---------------- Scripts ------------------------
-  
-  // console.log(getAll())
-  
-  // console.log(userData)
-  
-  
-  
-  //--------------- Event Listeners ------------------
-  window.addEventListener('load', onPageLoad);
-  
-  
-  
-  
-  // getHydration().then(data => {
-  //   console.log(user.id);
-  //   data.hydrationData.forEach(entry => {
-    //     if (entry.userID === user.id) {
-      //       userHydrationData.push(entry)
-      //     }
-      //   })
-      //   console.log(userHydrationData);
-      // });
-      
-      // generateUserRepo(userData);
-      // userRepo.findID(getRandomID(userData));
-      // user = new User(userRepo.currentUser);
-      // displayCurrentUser();
-      
-      // getSleep().then(data => {
-        //   data.activityData.forEach(user => sleepData.push(user));
-        //   console.log(activityData);
-        // })
-        
-//--------------------- Was working -------------------
-  // getUsers().then(data => {
-  //   data.userData.forEach(user => userData.push(user));
-  //   generateUserRepo(userData);
-  //   userRepo.findID(getRandomID(userData));
-  //   user = new User(userRepo.currentUser);
-  //   displayCurrentUser();
-  //   console.log(user.id);
-  // });
-        
-        
-
-
-
-
-
+//---------------- Default/Example given ------------------------
 // console.log(userData,"<>>>>userData")
 // // An example of how you tell webpack to use a CSS file
 // import './css/styles.css';
