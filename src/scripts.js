@@ -1,6 +1,9 @@
 
 //----------------- Imports--------------------
 import fetchAPI from './apiCalls';
+
+// import { getAll, userData, sleepData, hydrationData, activityData } from './apiCalls';
+
 import User from '../src/user';
 import UserRepository from './UserRepository';
 import './css/styles.css';
@@ -26,6 +29,8 @@ const fetchUserData = fetchAPI.getUserData()
 // const fetchHydrationData = fetchAPI.getHydrationData()
 // const fetchSleepData = fetchAPI.getSleepData()
 // const fetchActivityData = fetchAPI.getActivityData()
+
+
 
 
 
@@ -67,6 +72,7 @@ const displayUserInfo = user => {
   ${user.strideLength}
   ${user.dailyStepGoal}
   ${user.friends}
+
   Average amongst all users: ${user.dailyStepGoal}
 `};
 
@@ -82,12 +88,6 @@ const displayUserInfo = user => {
 
 
 //---------------- Scripts ------------------------
-
-// Promise.all([fetchUserData, fetchHydrationData, fetchSleepData, fetchActivityData])
-// .then(values => {
-//   // generateUserRepo(values[0])
-//   generateNewUser(values[0], values[1], values[2], values[3])
-// })
 
 Promise.all([fetchUserData])
 .then(values => {
