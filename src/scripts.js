@@ -1,9 +1,13 @@
 
 //----------------- Imports--------------------
+
 // import { getUsers, getSleep, getHydration } from './apiCalls';
 // import { getAll, userData, sleepData, hydrationData, activityData } from './apiCalls';
 // import { getUsers, getSleep, getHydration } from './apiCalls';
 import fetchAPI from './apiCalls';
+
+// import { getAll, userData, sleepData, hydrationData, activityData } from './apiCalls';
+
 import User from '../src/user';
 import UserRepository from './UserRepository';
 import './css/styles.css';
@@ -21,6 +25,8 @@ let userData = [];
 let userRepo = '';
 let user = '';
 const fetchUserData = fetchAPI.getUserData()
+
+
 
 //---------------- Functions --------------------
 const getRandomID = array => {
@@ -44,6 +50,7 @@ const displayUserInfo = user => {
   ${user.strideLength}
   ${user.dailyStepGoal}
   ${user.friends}
+
   Average amongst all users: ${user.dailyStepGoal}
 `};
 
@@ -106,6 +113,69 @@ const displayCurrentUser = () => {
 // })
 
 
+
+
+//   Average amongst all users: ${user.dailyStepGoal} | ${userRepo.averageStepGoal()}
+  `};
+  
+//   const generateUserRepo = userData => userRepo = new UserRepository(userData);
+  
+//   const displayCurrentUser = () => {
+//     displayUserName(user);
+//     displayUserInfo(user);
+//   };
+  
+//   const onPageLoad = () => {
+//     getAll().then(userData => console.log(userData))
+
+//   }
+  
+  
+  //---------------- Scripts ------------------------
+  
+  // console.log(getAll())
+  
+  // console.log(userData)
+  
+  
+  
+  //--------------- Event Listeners ------------------
+  window.addEventListener('load', onPageLoad);
+  
+  
+  
+  
+  // getHydration().then(data => {
+  //   console.log(user.id);
+  //   data.hydrationData.forEach(entry => {
+    //     if (entry.userID === user.id) {
+      //       userHydrationData.push(entry)
+      //     }
+      //   })
+      //   console.log(userHydrationData);
+      // });
+      
+      // generateUserRepo(userData);
+      // userRepo.findID(getRandomID(userData));
+      // user = new User(userRepo.currentUser);
+      // displayCurrentUser();
+      
+      // getSleep().then(data => {
+        //   data.activityData.forEach(user => sleepData.push(user));
+        //   console.log(activityData);
+        // })
+        
+//--------------------- Was working -------------------
+  // getUsers().then(data => {
+  //   data.userData.forEach(user => userData.push(user));
+  //   generateUserRepo(userData);
+  //   userRepo.findID(getRandomID(userData));
+  //   user = new User(userRepo.currentUser);
+  //   displayCurrentUser();
+  //   console.log(user.id);
+  // });
+        
+        
 
 
 
