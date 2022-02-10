@@ -1,6 +1,5 @@
 
 //----------------- Imports--------------------
-// import { getUsers, getSleep, getHydration } from './apiCalls';
 import { getAll, userData, sleepData, hydrationData, activityData } from './apiCalls';
 import User from '../src/user';
 import UserRepository from './UserRepository';
@@ -18,6 +17,8 @@ const welcomeMessage = document.querySelector('.welcome-message');
 // let activityData = [];
 let userRepo = '';
 let user = '';
+
+
 
 //---------------- Functions --------------------
 const getRandomID = array => {
@@ -39,53 +40,66 @@ const displayUserInfo = user => {
   ${user.dailyStepGoal}
   ${user.friends}
   Average amongst all users: ${user.dailyStepGoal} | ${userRepo.averageStepGoal()}
-`};
+  `};
+  
+  const generateUserRepo = userData => userRepo = new UserRepository(userData);
+  
+  const displayCurrentUser = () => {
+    displayUserName(user);
+    displayUserInfo(user);
+  };
+  
+  const onPageLoad = () => {
+    getAll().then(userData => console.log(userData))
 
-const generateUserRepo = userData => userRepo = new UserRepository(userData);
-
-const displayCurrentUser = () => {
-  displayUserName(user);
-  displayUserInfo(user);
-};
-
-//---------------- Scripts ------------------------
-getAll()
-console.log(userData)
-
-
-
-// getUsers().then(data => {
-//   data.userData.forEach(user => userData.push(user));
-//   generateUserRepo(userData);
-//   userRepo.findID(getRandomID(userData));
-//   user = new User(userRepo.currentUser);
-//   displayCurrentUser();
-//   console.log(user.id);
-// });
-
-
-// getHydration().then(data => {
-//   console.log(user.id);
-//   data.hydrationData.forEach(entry => {
-//     if (entry.userID === user.id) {
-//       userHydrationData.push(entry)
-//     }
-//   })
-//   console.log(userHydrationData);
-// });
-
-// generateUserRepo(userData);
-// userRepo.findID(getRandomID(userData));
-// user = new User(userRepo.currentUser);
-// displayCurrentUser();
-
-// getSleep().then(data => {
-//   data.activityData.forEach(user => sleepData.push(user));
-//   console.log(activityData);
-// })
-
-
-
+  }
+  
+  
+  //---------------- Scripts ------------------------
+  
+  // console.log(getAll())
+  
+  // console.log(userData)
+  
+  
+  
+  //--------------- Event Listeners ------------------
+  window.addEventListener('load', onPageLoad);
+  
+  
+  
+  
+  // getHydration().then(data => {
+  //   console.log(user.id);
+  //   data.hydrationData.forEach(entry => {
+    //     if (entry.userID === user.id) {
+      //       userHydrationData.push(entry)
+      //     }
+      //   })
+      //   console.log(userHydrationData);
+      // });
+      
+      // generateUserRepo(userData);
+      // userRepo.findID(getRandomID(userData));
+      // user = new User(userRepo.currentUser);
+      // displayCurrentUser();
+      
+      // getSleep().then(data => {
+        //   data.activityData.forEach(user => sleepData.push(user));
+        //   console.log(activityData);
+        // })
+        
+//--------------------- Was working -------------------
+  // getUsers().then(data => {
+  //   data.userData.forEach(user => userData.push(user));
+  //   generateUserRepo(userData);
+  //   userRepo.findID(getRandomID(userData));
+  //   user = new User(userRepo.currentUser);
+  //   displayCurrentUser();
+  //   console.log(user.id);
+  // });
+        
+        
 
 
 
