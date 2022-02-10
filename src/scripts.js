@@ -1,7 +1,9 @@
 
 //----------------- Imports--------------------
 // import { getUsers, getSleep, getHydration } from './apiCalls';
-import { getAll, userData, sleepData, hydrationData, activityData } from './apiCalls';
+// import { getAll, userData, sleepData, hydrationData, activityData } from './apiCalls';
+// import { getUsers, getSleep, getHydration } from './apiCalls';
+import fetchAPI from './apiCalls';
 import User from '../src/user';
 import UserRepository from './UserRepository';
 import './css/styles.css';
@@ -12,18 +14,22 @@ const userName = document.querySelector('.user-name');
 const welcomeMessage = document.querySelector('.welcome-message');
 
 //----------------- Global Vars ------------------
-// let userData = [];
+let userData = [];
 // let hydrationData = [];
 // let sleepData = [];
 // let activityData = [];
 let userRepo = '';
 let user = '';
+const fetchUserData = fetchAPI.getUserData()
 
 //---------------- Functions --------------------
 const getRandomID = array => {
-  const randomIndex = Math.floor(Math.random() * array.length);
-  const randomID = array[randomIndex].id;
-  return randomID;
+  // console.log(array.userData)
+  const randomIndex = array.userData[Math.floor(Math.random() * array.userData.length)];
+  // userData[Math.floor(Math.random() * userData.length)]
+  // console.log(randomIndex)
+  // const randomID = array[randomIndex];
+  return randomIndex;
 };
 
 const displayUserName = user => {
@@ -41,7 +47,20 @@ const displayUserInfo = user => {
   Average amongst all users: ${user.dailyStepGoal} | ${userRepo.averageStepGoal()}
 `};
 
-const generateUserRepo = userData => userRepo = new UserRepository(userData);
+Promise.all([fetchUserData]).then(values => {
+  // generateUserRepo(values[0])
+  generateNewUser(values[0])
+})
+
+const generateNewUser = (userData) => {
+  const getRandomUser = getRandomID(userData)
+  // console.log(getRandomUser)
+  user = new User(getRandomUser)
+  displayCurrentUser()
+  console.log(user)
+  // console.log(userRepo)
+}
+// const generateUserRepo = userData => userRepo = new UserRepository(userData);
 
 const displayCurrentUser = () => {
   displayUserName(user);
@@ -49,8 +68,8 @@ const displayCurrentUser = () => {
 };
 
 //---------------- Scripts ------------------------
-getAll()
-console.log(userData)
+// getAll()
+// console.log(userData)
 
 
 
