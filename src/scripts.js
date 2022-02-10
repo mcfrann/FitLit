@@ -44,8 +44,10 @@ const displayUserInfo = user => {
   ${user.strideLength}
   ${user.dailyStepGoal}
   ${user.friends}
-  Average amongst all users: ${user.dailyStepGoal} | ${userRepo.averageStepGoal()}
+  Average amongst all users: ${user.dailyStepGoal}
 `};
+
+//NOT WORKING: | ${userRepo.averageStepGoal()
 
 Promise.all([fetchUserData]).then(values => {
   // generateUserRepo(values[0])
