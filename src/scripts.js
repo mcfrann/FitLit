@@ -9,16 +9,23 @@ import './css/styles.css';
 const userInfo = document.querySelector('.user-info');
 const userName = document.querySelector('.user-name');
 const welcomeMessage = document.querySelector('.welcome-message');
+const hydration = document.querySelector(".user-hydration")
+const sleep = document.querySelector(".user-sleep")
+const activity = document.querySelector(".user-activity")
+
+
 
 //----------------- Global Vars ------------------
 let userData = [];
 let hydrationData = [];
 let sleepData = [];
-// let activityData = [];
+let activityData = [];
 let userRepo = '';
 let user = '';
 const fetchUserData = fetchAPI.getUserData()
-// fetchHydrationData, fetchSleepData
+// const fetchHydrationData = fetchAPI.getHydrationData()
+// const fetchSleepData = fetchAPI.getSleepData()
+// const fetchActivityData = fetchAPI.getActivityData()
 
 
 
@@ -32,12 +39,16 @@ const getRandomID = array => {
 const generateNewUser = (userData) => {
   const getRandomUser = getRandomID(userData)
   user = new User(getRandomUser)
+  // hydration = new Hydration(hydrationData.filter(entry => {
+  //   entry.id === user.id
+  // }))
   displayCurrentUser()
 }
 
 const displayCurrentUser = () => {
   displayUserName(user);
   displayUserInfo(user);
+  // displayHydration(hydration);
 };
 
 
@@ -60,16 +71,32 @@ const displayUserInfo = user => {
 `};
 
 //NOT WORKING: | ${userRepo.averageStepGoal()
+//
+// const displayHydration = user => {
+//   return hydration.innerText = `
+//   ${hydration.calculateAvgWater()}
+//   `
+// }
+
 
 
 
 //---------------- Scripts ------------------------
 
-Promise.all([fetchUserData]).then(values => {
+// Promise.all([fetchUserData, fetchHydrationData, fetchSleepData, fetchActivityData])
+// .then(values => {
+//   // generateUserRepo(values[0])
+//   generateNewUser(values[0], values[1], values[2], values[3])
+// })
+
+Promise.all([fetchUserData])
+.then(values => {
+  // console.log(fetchUserData)
   // generateUserRepo(values[0])
   generateNewUser(values[0])
+  // generateNewUser(values[1])
+  // console.log(values[1])
 })
-
 
 
 //---------------- Default/Example given ------------------------
