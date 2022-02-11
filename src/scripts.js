@@ -1,22 +1,19 @@
 
 //----------------- Imports--------------------
 import fetchAPI from './apiCalls';
-
-// import { getAll, userData, sleepData, hydrationData, activityData } from './apiCalls';
-
 import User from '../src/user';
+import Hydration from '../src/Hydration'
 import UserRepository from './UserRepository';
+import Sleep from '../src/Sleep';
 import './css/styles.css';
 
 //----------------- Query Selectors ------------
 const userInfo = document.querySelector('.user-info');
 const userName = document.querySelector('.user-name');
 const welcomeMessage = document.querySelector('.welcome-message');
-const hydration = document.querySelector(".user-hydration")
-const sleep = document.querySelector(".user-sleep")
-const activity = document.querySelector(".user-activity")
-
-
+const hydrationWidget = document.querySelector(".user-hydration");
+const sleepWidget = document.querySelector(".user-sleep");
+const activity = document.querySelector(".user-activity");
 
 //----------------- Global Vars ------------------
 let userData = [];
@@ -25,37 +22,36 @@ let sleepData = [];
 let activityData = [];
 let userRepo = '';
 let user = '';
-const fetchUserData = fetchAPI.getUserData()
-// const fetchHydrationData = fetchAPI.getHydrationData()
-// const fetchSleepData = fetchAPI.getSleepData()
-// const fetchActivityData = fetchAPI.getActivityData()
-
-
-
-
+let hydration = '';
+let sleep = '';
+const fetchUserData = fetchAPI.getUserData();
+const fetchHydrationData = fetchAPI.getHydrationData();
+const fetchSleepData = fetchAPI.getSleepData();
+const fetchActivityData = fetchAPI.getActivityData();
 
 //---------------- Functions --------------------
 const getRandomID = array => {
-  const randomIndex = array.userData[Math.floor(Math.random() * array.userData.length)];
+  const randomIndex = array[Math.floor(Math.random() * array.length)];
   return randomIndex;
 };
 
-
 const generateNewUser = (userData) => {
-  const getRandomUser = getRandomID(userData)
-  user = new User(getRandomUser)
-  // hydration = new Hydration(hydrationData.filter(entry => {
-  //   entry.id === user.id
-  // }))
-  displayCurrentUser()
-}
+  const getRandomUser = getRandomID(userData);
+  user = new User(getRandomUser);
+  hydration = new Hydration(user.id, hydrationData);
+  sleep = new Sleep(user.id, sleepData);
+  console.log(user);
+  console.log(hydration);
+  console.log(sleep);
+  displayCurrentUser();
+};
 
 const displayCurrentUser = () => {
   displayUserName(user);
   displayUserInfo(user);
-  // displayHydration(hydration);
+  displayHydrationInfo(hydration);
+  displaySleepInfo(sleep);
 };
-
 
 
 //---------------- Updating DOM --------------------
@@ -77,26 +73,27 @@ const displayUserInfo = user => {
 `};
 
 //NOT WORKING: | ${userRepo.averageStepGoal()
-//
-// const displayHydration = user => {
-//   return hydration.innerText = `
-//   ${hydration.calculateAvgWater()}
-//   `
-// }
 
+const displayHydrationInfo = user => {
+  return hydrationWidget.innerText = `
+  ${hydration.calculateAvgWater()}
+`};
 
-
+const displaySleepInfo = sleep => {
+  return sleepWidget.innerText = `
+  ${sleep.userID}`
+};
 
 //---------------- Scripts ------------------------
 
-Promise.all([fetchUserData])
+Promise.all([fetchUserData, fetchHydrationData, fetchSleepData, fetchActivityData])
 .then(values => {
-  // console.log(fetchUserData)
-  // generateUserRepo(values[0])
-  generateNewUser(values[0])
-  // generateNewUser(values[1])
-  // console.log(values[1])
-})
+  userData = values[0].userData;
+  hydrationData = values[1].hydrationData;
+  sleepData = values[2].sleepData;
+  activityData = values[3].activityData;
+  generateNewUser(userData);
+});
 
 
 //---------------- Default/Example given ------------------------
