@@ -42,6 +42,7 @@ const generateNewUser = (userData) => {
   user.returnLastWeek()
   hydration = new Hydration(user.id, hydrationData, user.date);
   sleep = new Sleep(user.id, sleepData);
+  hydration.calculateOuncesPerDayOverWeek()
   console.log(user);
   console.log(hydration);
   console.log(sleep);
@@ -78,14 +79,24 @@ const displayUserInfo = user => {
 
 const displayHydrationInfo = user => {
   return hydrationWidget.innerText = `
-  ${hydration.calculateAvgWater()}
-  ${hydration.calculateOuncesPerDayByDate()}
+  Water today: ${hydration.calculateOuncesPerDayByDate()}
+  2020/01/16: ${hydration.week[0].numOunces}
+  2020/01/17: ${hydration.week[1].numOunces}
+  2020/01/18: ${hydration.week[2].numOunces}
+  2020/01/19: ${hydration.week[3].numOunces}
+  2020/01/20: ${hydration.week[3].numOunces}
+  2020/01/21: ${hydration.week[3].numOunces}
+  2020/01/22: ${hydration.week[3].numOunces}
 `};
+
+//  ${hydration.calculateAvgWater()}
 
 const displaySleepInfo = sleep => {
   return sleepWidget.innerText = `
   ${sleep.userID}`
 };
+
+
 
 //---------------- Scripts ------------------------
 

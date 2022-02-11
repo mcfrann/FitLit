@@ -22,7 +22,6 @@ class User {
 
   returnLastWeek() {
     return this.week = this.userHydration.map(entry => entry.date).reverse().filter((entry, index) => (index <= 6)).reverse()
-    // return this.week = this.userHydration.date.reverse().map(entry => this.week.push(entry.date))
   }
 };
 

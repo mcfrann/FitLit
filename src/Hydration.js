@@ -1,9 +1,10 @@
 class Hydration {
-    constructor(userID, hydrationData, date) {
+    constructor(userID, hydrationData, date, week) {
         this.userID = userID;
         this.rawData = hydrationData;
         this.userHydrationData = hydrationData.filter(data => data.userID === this.userID);
         this.date = date;
+        this.week = [];
     };
 
     calculateAvgWater() {
@@ -19,7 +20,7 @@ class Hydration {
         }
 
     calculateOuncesPerDayOverWeek() {
-
+       return this.week = this.userHydrationData.map(entry => entry).reverse().filter((entry, index) => (index <= 6)).reverse()
     }
 };
 
