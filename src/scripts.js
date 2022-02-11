@@ -40,12 +40,21 @@ const generateNewUser = (userData) => {
   user = new User(getRandomUser, hydrationData);
   user.returnCurrentDate()
   user.returnLastWeek()
+  userRepo = new UserRepository(userData, user);
   hydration = new Hydration(user.id, hydrationData, user.date);
-  sleep = new Sleep(user.id, sleepData);
   hydration.calculateOuncesPerDayOverWeek()
-  console.log(user);
-  console.log(hydration);
-  console.log(sleep);
+  sleep = new Sleep(user.id, sleepData);
+  sleep.userAverageHoursSleptPerDay();
+  sleep.userAverageQualitySleptPerDay();
+  sleep.hoursSleptPerDay('2020/01/20');
+  sleep.hoursSleptPerDay('2020/01/20');
+  sleep.qualitySleptPerDay('2020/01/20');
+  sleep.allUserSleepQuality();
+  sleep.calculateHrsSleptPerDayOverWeek('2019/06/15');
+  sleep.calculateQualSleepPerDayOverWeek('2019/06/15');
+  user);
+  hydration);
+  sleep);
   displayCurrentUser();
 };
 
@@ -72,10 +81,10 @@ const displayUserInfo = user => {
   ${user.dailyStepGoal}
   ${user.friends}
 
-  Average amongst all users: ${user.dailyStepGoal}
+  Average amongst all users: ${user.dailyStepGoal}/${userRepo.averageStepGoal()}
 `};
 
-//NOT WORKING: | ${userRepo.averageStepGoal()
+
 
 const displayHydrationInfo = user => {
   return hydrationWidget.innerText = `
