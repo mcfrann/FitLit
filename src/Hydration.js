@@ -1,17 +1,18 @@
 class Hydration {
-    constructor(userHydration) {
-        this.userID = userHydration.userID;
-        this.data = userHydration;
+    constructor(userID, hydrationData) {
+        this.userID = userID;
+        this.rawData = hydrationData;
+        this.userSleepData = '';
         // this.dates = hydration.date;
         // this.numOunces = hydration.numOunces;
-    }
+    };
 
     calculateAvgWater() {
-        let waterAverage = this.data.reduce((acc, userLog) => {
-            return acc += userLog.numOunces / this.data.length;
-          }, 0);
-          return waterAverage;
-    }
-}
+        let waterAverage = this.rawData.reduce((acc, userLog) => {
+            return acc += userLog.numOunces / this.rawData.length;
+        }, 0);
+        return waterAverage;
+    };
+};
 
-export default Hydration
+export default Hydration;

@@ -1,10 +1,9 @@
 class Sleep {
-    constructor(sleep) {
-        this.userID = sleep.userID;
-        this.date = sleep.date;
-        this.hoursSlept = sleep.hoursSlept;
-        this.sleepQuality = sleep.sleepQuality;
-    }
-}
+    constructor(userID, sleepData) {
+        this.userID = userID;
+        this.rawData = sleepData;
+        this.userSleepData = '';       
+    };
+};
 
-export default Sleep
+export default Sleep;
