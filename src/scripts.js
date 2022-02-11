@@ -37,8 +37,10 @@ const getRandomID = array => {
 
 const generateNewUser = (userData) => {
   const getRandomUser = getRandomID(userData);
-  user = new User(getRandomUser);
-  hydration = new Hydration(user.id, hydrationData);
+  user = new User(getRandomUser, hydrationData);
+  user.returnCurrentDate()
+  user.returnLastWeek()
+  hydration = new Hydration(user.id, hydrationData, user.date);
   sleep = new Sleep(user.id, sleepData);
   console.log(user);
   console.log(hydration);
@@ -77,6 +79,7 @@ const displayUserInfo = user => {
 const displayHydrationInfo = user => {
   return hydrationWidget.innerText = `
   ${hydration.calculateAvgWater()}
+  ${hydration.calculateOuncesPerDayByDate()}
 `};
 
 const displaySleepInfo = sleep => {
