@@ -52,9 +52,9 @@ const generateNewUser = (userData) => {
   sleep.allUserSleepQuality();
   sleep.calculateHrsSleptPerDayOverWeek('2019/06/15');
   sleep.calculateQualSleepPerDayOverWeek('2019/06/15');
-  user);
-  hydration);
-  sleep);
+  console.log(user);
+  console.log(hydration);
+  console.log(sleep);
   displayCurrentUser();
 };
 
@@ -102,7 +102,17 @@ const displayHydrationInfo = user => {
 
 const displaySleepInfo = sleep => {
   return sleepWidget.innerText = `
-  ${sleep.userID}`
+  Sleep information for ${user.returnFirstName()}:
+  Average number of hours slept per day: ${sleep.userAverageHoursSleptPerDay()}
+  Average sleep quality per day over all time: ${sleep.userAverageQualitySleptPerDay()}
+  Hours slept today: ${sleep.hoursSleptPerDay('2020/01/20')}
+  Sleep quality for today: ${sleep.hoursSleptPerDay('2020/01/20')}
+  Hours slept each day over given week: ${sleep.qualitySleptPerDay('2020/01/20')}
+  Sleep quality each day over given week: ${sleep.allUserSleepQuality()}
+  Average hours slept by all users: ${sleep.calculateHrsSleptPerDayOverWeek('2019/06/15')}
+  Average sleep quality by ${sleep.calculateQualSleepPerDayOverWeek('2019/06/15')}
+  `
+  //------NEEDS REFACTORING - these messages may be jumbled, double check
 };
 
 
