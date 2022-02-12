@@ -5,6 +5,7 @@ import User from '../src/user';
 import Hydration from '../src/Hydration'
 import UserRepository from './UserRepository';
 import Sleep from '../src/Sleep';
+import Friend from '../src/friend'
 import './css/styles.css';
 
 //----------------- Query Selectors ------------
@@ -35,33 +36,64 @@ const getRandomID = array => {
   return randomIndex;
 };
 
-const generateNewUser = (userData) => {
-  const getRandomUser = getRandomID(userData);
-  user = new User(getRandomUser, hydrationData);
-  user.returnCurrentDate()
-  user.returnLastWeek()
-  userRepo = new UserRepository(userData, user);
-  hydration = new Hydration(user.id, hydrationData, user.date);
-  hydration.calculateOuncesPerDayOverWeek()
-  sleep = new Sleep(user.id, sleepData);
-  sleep.userAverageHoursSleptPerDay();
-  sleep.userAverageQualitySleptPerDay();
-  sleep.hoursSleptPerDay('2020/01/20');
-  sleep.hoursSleptPerDay('2020/01/20');
-  sleep.qualitySleptPerDay('2020/01/20');
-  sleep.allUserSleepQuality();
-  sleep.calculateHrsSleptPerDayOverWeek('2019/06/15');
-  sleep.calculateQualSleepPerDayOverWeek('2019/06/15');
-  console.log(user);
-  console.log(hydration);
-  console.log(sleep);
+const generatePageUser = (userData) => {
+  generateNewUser(userData, hydrationData, sleepData, activityData);
+  generateNewUserRepo(userData, user);
+  generateNewHydration(user.id, hydrationData, user.date);
+  generateNewSleep(user.id, sleepData);
+  generateNewFriends(user.friends, userData, activityData);
+  // console.log(user.formattedFriends)
+  // console.log(user);
+  // console.log(hydration);
+  // console.log(sleep);
   displayCurrentUser();
+};
+
+const generateNewUser = (userData, hydrationData) => {
+  const getRandomUser = getRandomID(userData);
+  const newUser = new User(getRandomUser, hydrationData, sleepData, activityData);
+  newUser.returnCurrentDate();
+  newUser.returnLastWeek();
+  return user = newUser;
+};
+
+const generateNewUserRepo = (userData, user) => {
+  userRepo = new UserRepository(userData, user);
+  return userRepo = userRepo;
+};
+
+const generateNewHydration = () => {
+  const newHydration = new Hydration(user.id, hydrationData, user.date);
+  newHydration.calculateOuncesPerDayOverWeek();
+  return hydration = newHydration;
+};
+
+const generateNewSleep = () => {
+  const newSleep = new Sleep(user.id, sleepData);
+  newSleep.userAverageHoursSleptPerDay();
+  newSleep.userAverageQualitySleptPerDay();
+  newSleep.hoursSleptPerDay('2020/01/20');
+  newSleep.hoursSleptPerDay('2020/01/20');
+  newSleep.qualitySleptPerDay('2020/01/20');
+  newSleep.allUserSleepQuality();
+  newSleep.calculateHrsSleptPerDayOverWeek('2019/06/15');
+  newSleep.calculateQualSleepPerDayOverWeek('2019/06/15');
+  return sleep = newSleep;
+};
+
+const generateNewFriends = (userFriends, userData, activityData) => {
+  let userRealFriends = [];
+  userFriends.map(friendId => userRealFriends.push(new Friend(friendId, userData, activityData)));
+  userRealFriends.forEach(friend => {
+    friend.assignName();
+  });
+  return user.formattedFriends = userRealFriends;
 };
 
 const displayCurrentUser = () => {
   displayUserName(user);
   displayUserInfo(user);
-  displayHydrationInfo(hydration);
+  displayHydrationInfo(user, hydration);
   displaySleepInfo(sleep);
 };
 
@@ -73,31 +105,31 @@ const displayUserName = user => {
 };
 
 const displayUserInfo = user => {
+  let friendFirstName = user.formattedFriends.map(friend => ' ' + friend.name.split(" ")[0])
   return userInfo.innerText = `
   ${user.name}
   ${user.email}
   ${user.address}
   ${user.strideLength}
   ${user.dailyStepGoal}
-  ${user.friends}
+  ${friendFirstName}
 
   Average amongst all users: ${user.dailyStepGoal}/${userRepo.averageStepGoal()}
 `};
 
-const displayHydrationInfo = user => {
+const displayHydrationInfo = (user, hydration) => {
   return hydrationWidget.innerText = `
-  Hydration Stats
+  ${user.returnFirstName()}'s Hydration Stats
   
   Oz of water today: ${hydration.calculateOuncesPerDayByDate()}
   2020/01/16: ${hydration.week[0].numOunces}
   2020/01/17: ${hydration.week[1].numOunces}
   2020/01/18: ${hydration.week[2].numOunces}
   2020/01/19: ${hydration.week[3].numOunces}
-  2020/01/20: ${hydration.week[3].numOunces}
-  2020/01/21: ${hydration.week[3].numOunces}
-  2020/01/22: ${hydration.week[3].numOunces}
+  2020/01/20: ${hydration.week[4].numOunces}
+  2020/01/21: ${hydration.week[5].numOunces}
+  2020/01/22: ${hydration.week[6].numOunces}
 `};
-//----------does calculateOuncesPerDayByDate() in above function need a date?
 
 const displaySleepInfo = sleep => {
   return sleepWidget.innerText = `
@@ -126,7 +158,7 @@ Promise.all([fetchUserData, fetchHydrationData, fetchSleepData, fetchActivityDat
   hydrationData = values[1].hydrationData;
   sleepData = values[2].sleepData;
   activityData = values[3].activityData;
-  generateNewUser(userData);
+  generatePageUser(userData);
 });
 
 
