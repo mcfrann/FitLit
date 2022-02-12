@@ -1,49 +1,11 @@
 import { expect } from 'chai';
 import Sleep from '../src/Sleep';
+import sleepData from '../src/data/sleep-data'
+import userData from '../src/data/users'
+import hydrationData from '../src/data/hydration-data'
 
-let userID = 4;
-let userData = [{
-    "id": 1,
-    "name": "Luisa Hane",
-    "address": "15195 Nakia Tunnel, Erdmanport VA 19901-1697",
-    "email": "Diana.Hayes1@hotmail.com",
-    "strideLength": 4.3,
-    "dailyStepGoal": 10000,
-    "friends": [
-    16,
-    4,
-    8
-    ]
-    },
-    {
-    "id": 2,
-    "name": "Jarvis Considine",
-    "address": "30086 Kathryn Port, Ciceroland NE 07273",
-    "email": "Dimitri.Bechtelar11@gmail.com",
-    "strideLength": 4.5,
-    "dailyStepGoal": 5000,
-    "friends": [
-    9,
-    18,
-    24,
-    19
-    ]
-    },
-    {
-    "id": 3,
-    "name": "Herminia Witting",
-    "address": "85823 Bosco Fork, East Oscarstad MI 85126-5660",
-    "email": "Elwin.Tromp@yahoo.com",
-    "strideLength": 4.4,
-    "dailyStepGoal": 5000,
-    "friends": [
-    19,
-    11,
-    42,
-    33
-    ]
-    },
-    {
+
+let user =  {
     "id": 4,
     "name": "Mae Connelly",
     "address": "28926 Schinner Islands, Turnermouth NE 23720-3230",
@@ -51,98 +13,67 @@ let userData = [{
     "strideLength": 3.1,
     "dailyStepGoal": 4000,
     "friends": [
-    48,
-    7,
-    44,
-    8
+        48,
+        7,
+        44,
+        8
     ]
-    },
-    {
-    "id": 5,
-    "name": "Erick Schaden",
-    "address": "514 Mayert Walk, Jordaneside SC 55023-6523",
-    "email": "Vanessa_Gerhold@gmail.com",
-    "strideLength": 3.1,
-    "dailyStepGoal": 8000,
-    "friends": [
-    13,
-    44,
-    49,
-    33,
-    10
-    ]
-    }]
-let sleepData = [{
-    "userID": 1,
-    "date": "2019/06/15",
-    "hoursSlept": 6.1,
-    "sleepQuality": 2.2
-    },
-    {
-    "userID": 2,
-    "date": "2019/06/15",
-    "hoursSlept": 7,
-    "sleepQuality": 4.7
-    },
-    {
-    "userID": 3,
-    "date": "2019/06/15",
-    "hoursSlept": 10.8,
-    "sleepQuality": 4.7
-    },
-    {
-    "userID": 4,
-    "date": "2019/06/15",
-    "hoursSlept": 5.4,
-    "sleepQuality": 3
-    },
-    {
-    "userID": 5,
-    "date": "2019/06/15",
-    "hoursSlept": 4.1,
-    "sleepQuality": 3.6
-    }]
+    }
+
+let userID = user.id
 
 describe('Sleep', () => {
   const sleep = new Sleep(userID, sleepData);
 
   it('should be a function', function () {
-    expect(sleep).to.be.a('function');
+    expect(Sleep).to.be.a('function');
   });
 
-//   it('should be an instance of user', function () {
-//     expect(user).to.be.an.instanceOf(User)
-//   })
+  it('should be an instance of sleep', function () {
+    expect(sleep).to.be.an.instanceOf(Sleep)
+  })
 
-//   it('should have an id', function () {
-//     expect(user.id).to.equal(4)
-//   })
+  it('should have a current user id', function () {
+    expect(sleep.userID).to.equal(4)
+  })
 
-//   it('should have a name', function () {
-//     expect(user.name).to.equal("Mae Connelly")
-//   })
+  it('should have access to sleep data', function () {
+    expect(sleep.rawData).to.equal(sleepData)
+  })
 
-//   it('should have an address', function () {
-//     expect(user.address).to.equal("28926 Schinner Islands, Turnermouth NE 23720-3230")
-//   })
+  it('should calculate average hours slept per day', function () {
+    const avg = sleep.userAverageHoursSleptPerDay();
+    expect(avg).to.equal('7.4');
+  })
 
-//   it('should have an email', function () {
-//     expect(user.email).to.equal("Marcos_Pollich@hotmail.com")
-//   })
+  it('should calculate average quality slept per day', function () {
+    const avg = sleep.userAverageQualitySleptPerDay();
+    expect(avg).to.equal("3.1")
+  })
 
-//   it('should have a stride length', function () {
-//     expect(user.strideLength).to.equal(3.1)
-//   })
+  it('should find hours slept in a day', function () {
+    const hrsSlept = sleep.hoursSleptPerDay("2019/06/15");
+    expect(hrsSlept).to.equal(5.4);
+  })
 
-//   it('should have a daily step goal', function () {
-//     expect(user.dailyStepGoal).to.equal(4000)
-//   })
+  it('should find quality slept in a day', function () {
+    const qualSlept = sleep.qualitySleptPerDay("2019/06/15");
+    expect(qualSlept).to.equal(3);
+  })
 
-//   it('should have friends', function () {
-//     expect(user.friends).to.eql([48,7,44,8])
-//   })
+  it('should calculate hours slept over week', function () {
+    const hrsOverWeek = sleep.calculateHrsSleptPerDayOverWeek("2019/06/15");
+    expect(hrsOverWeek).to.eql([5.4, 8.3, 5.7, 5.9, 5.2, 8.3, 10.6])
+  })
 
-//   it("should return a user's first name only", function () {
-//     expect(user.returnFirstName()).to.equal("Mae")
-//   })
+  it("should calculate quality slept over week", function () {
+    const qualOverWeek = sleep.calculateQualSleepPerDayOverWeek("2019/06/15");
+    expect(qualOverWeek).to.eql([3, 4.5, 1.1, 2.5, 2.3, 1.9, 2.7])
+  })
+
+  it("should calculate average sleep quality for all users", function () {
+    const avgQualAllUsers = sleep.allUserSleepQuality();
+    console.log(avgQualAllUsers)
+    expect(avgQualAllUsers).to.equal('3.0')
+  })
 });
