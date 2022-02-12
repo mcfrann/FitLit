@@ -73,7 +73,6 @@ describe('Sleep', () => {
 
   it("should calculate average sleep quality for all users", function () {
     const avgQualAllUsers = sleep.allUserSleepQuality();
-    console.log(avgQualAllUsers)
     expect(avgQualAllUsers).to.equal('3.0')
   })
 });
