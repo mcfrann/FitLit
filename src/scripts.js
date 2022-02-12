@@ -13,7 +13,7 @@ const userName = document.querySelector('.user-name');
 const welcomeMessage = document.querySelector('.welcome-message');
 const hydrationWidget = document.querySelector(".user-hydration");
 const sleepWidget = document.querySelector(".user-sleep");
-const activity = document.querySelector(".user-activity");
+const activityWidget = document.querySelector(".user-activity");
 
 //----------------- Global Vars ------------------
 let userData = [];
@@ -63,13 +63,15 @@ const displayCurrentUser = () => {
   displayUserInfo(user);
   displayHydrationInfo(hydration);
   displaySleepInfo(sleep);
+  displayActivityInfo();
 };
 
 
 //---------------- Updating DOM --------------------
 
 const displayUserName = user => {
-  return welcomeMessage.innerText = `Welcome, ${user.returnFirstName()}!`;
+  return welcomeMessage.innerText = `Welcome,
+  ${user.returnFirstName()}.`;
 };
 
 const displayUserInfo = user => {
@@ -86,8 +88,8 @@ const displayUserInfo = user => {
 
 const displayHydrationInfo = user => {
   return hydrationWidget.innerText = `
-  Hydration Stats
-  
+  Hydration Stats:
+
   Oz of water today: ${hydration.calculateOuncesPerDayByDate()}
   2020/01/16: ${hydration.week[0].numOunces}
   2020/01/17: ${hydration.week[1].numOunces}
@@ -101,22 +103,22 @@ const displayHydrationInfo = user => {
 
 const displaySleepInfo = sleep => {
   return sleepWidget.innerText = `
-  ${user.returnFirstName()}'s Sleep Stats
+  ${user.returnFirstName()}'s Sleep Stats:
 
   Today:
-
   Hours slept: ${sleep.hoursSleptPerDay('2020/01/20')} | Sleep quality: ${sleep.qualitySleptPerDay('2020/01/20')}
-
   Over last week:
-
   Average hours slept: ${sleep.calculateHrsSleptPerDayOverWeek('2019/06/15')} | Average sleep quality: ${sleep.calculateQualSleepPerDayOverWeek('2019/06/15')}
-
   All time:
-
   Average hours slept: ${sleep.userAverageHoursSleptPerDay()} | Average sleep quality: ${sleep.userAverageQualitySleptPerDay()}
   `
 };
 
+const displayActivityInfo = () => {
+  return activityWidget.innerText = `
+  ${user.returnFirstName()}'s Activity Data:
+  `
+};
 
 //---------------- Scripts ------------------------
 
