@@ -1,3 +1,13 @@
+video {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  /* opacity:.1; */
+}
+
 body, html {
   background-color: #001219;
   background-repeat: no-repeat;
@@ -7,6 +17,11 @@ body, html {
   margin: 0px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
+  position: relative;
+
+  /* background: url(https://user-images.githubusercontent.com/88151743/153694400-575845c1-cdb0-4e4c-accd-8a7ef9a4607e.jpg); */
+  /* background-size: cover; */
+  /* position: fixed; */
 }
 
 /* * {
@@ -21,19 +36,43 @@ body, html {
   /* margin: 20px; */
 }
 
+
 .header {
-  width: 100%;
-  height: 15%;
+  /* width: 100%; */
+  /* height: 15%; */
+  /* position: absolute; */
+  height: 30%;
+  width: 40%;
+  margin: 10px;
+  /* bottom: 0; */
+  /* position: relative; */
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
 }
 
 .welcome-message {
+  position: fixed;
   font-size: 50px;
   font-weight: bold;
   color: #d62828;
   text-align: center;
+  animation: 5s ease-out 0s 1 fadeIn;
+  text-transform: uppercase;
+  text-shadow: -3px 3px 0px #d62828,
+                3px 3px 0px #d62828,
+                3px -3px 0px #d62828,
+                -3px -3px 0px #d62828;
 }
 
 .tile-container {
+  position: fixed;
   display: flex;
   width: 90%;
   height: 100%;
@@ -41,24 +80,48 @@ body, html {
   margin: 33px auto;
   color: #eae2b7;
   text-align: center;
+  opacity: 1;
+}
+
+.left-side-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 div {
   border-radius: 10px;
   background-color: #003049;
+  transition: .5s;
+  /* box-shadow: 10px 5px 5px #d62828; */
 }
 
+div:hover {
+  transform: scale(1.1);
+}
+
+/* .user-info-container {
+  /* align-items: flex-end; */
+  /* height: 50%;
+  width: 40%;
+  margin: 10px; */
+  /* display: flex; */
+  /* align-items: flex-end; */
+  /* position: absolute;
+  bottom: 0px; */
+/* }  */
 
 .user-info {
-  height: 96.5%;
-  width: 40%;
+  height: 30%;
+  width: 100%;
   margin: 10px;
+  flex-direction: column;
 }
 
 .activity-hydration {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   width: 100%;
   height: 50%;
 }
@@ -79,7 +142,7 @@ div {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 46.5%;
+  height: 60%;
   /* margin: 10px; */
 }
 
