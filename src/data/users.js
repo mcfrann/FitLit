@@ -676,4 +676,5 @@
     ]
   }
 ];
+
 export default userData;

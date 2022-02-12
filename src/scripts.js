@@ -121,7 +121,7 @@ const displayUserInfo = user => {
 
 const displayHydrationInfo = (user, hydration) => {
   return hydrationWidget.innerText = `
-  Hydration Stats:
+  ${user.returnFirstName()}'s Hydration Stats:
 
   Oz of water today: ${hydration.calculateOuncesPerDayByDate()}
   2020/01/16: ${hydration.week[0].numOunces}

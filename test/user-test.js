@@ -1,12 +1,16 @@
 import { expect } from 'chai';
+
 import User from '../src/user';
 import UserRepository from '../src/UserRepository';
 import userData from '../src/data/users'
+import hydrationData from '../src/data/hydration-data.js'
+
+let userHydrationDataPoint = { userID: 4, date: '2019/06/15', numOunces: 85 }
 
 describe('User', () => {
   const userRepo = new UserRepository(userData);
   userRepo.findID(4)
-  const user = new User(userRepo.currentUser);
+  const user = new User(userRepo.currentUser, hydrationData);
 
 
   it('should be a function', function () {
@@ -43,6 +47,29 @@ describe('User', () => {
 
   it('should have friends', function () {
     expect(user.friends).to.eql([48,7,44,8])
+  })
+
+  it('should invoke returnCurrentDate method and update date', function () {
+    user.returnCurrentDate();
+    expect(user.date).to.equal("2020/01/22")
+  })
+
+  it('should invoke returnLastWeek method and show the week', function () {
+    user.returnLastWeek();
+    
+    expect(user.week).to.eql([
+      '2020/01/16',
+      '2020/01/17',
+      '2020/01/18',
+      '2020/01/19',
+      '2020/01/20',
+      '2020/01/21',
+      '2020/01/22'
+    ])
+  })
+
+  it('should show user hydration', function () {
+    expect(user.userHydration[0]).to.eql(userHydrationDataPoint); 
   })
 
   it("should return a user's first name only", function () {
