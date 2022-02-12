@@ -29,7 +29,7 @@ body, html {
 .welcome-message {
   font-size: 50px;
   font-weight: bold;
-  color: white;
+  color: #d62828;
   text-align: center;
 }
 
@@ -39,7 +39,7 @@ body, html {
   height: 100%;
   padding: 20px;
   margin: 33px auto;
-  color: white;
+  color: #eae2b7;
   text-align: center;
 }
 
@@ -53,7 +53,6 @@ div {
   height: 96.5%;
   width: 40%;
   margin: 10px;
-  color: white;
 }
 
 .activity-hydration {
