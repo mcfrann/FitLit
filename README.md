@@ -1,77 +1,35 @@
-# FitLit Starter Kit
+# FitLit Starter Kit Overview:
 
-The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
+FitLit is a wellness application that shows a user their recent performance by showing data related to their activity levels, hydration habits, and sleep behavior. Upon page load, a user can view their personal information and friends names that also use the app on the left hand side. Their activity, hydration, and sleep data are all separated into separate columns for easy viewing. The information displayed includes, but is not limited to, how many steps they have taken per day, the number of ounces of water drank per day for the past week, and their all-time average sleep quality/number of hours slept nightly.
 
-## Setup
+![gif](https://user-images.githubusercontent.com/88151743/153728601-80e996d1-0ea9-4c6b-aff7-2179e2c1bdd5.gif)
 
-1. Within your group, decide on one person to have the project repository (repo) on their GitHub account. Then, that person should fork this repo - on the top right corner of this page, click the **Fork** button.
-1. Both memebers of the group should clone down the _forked_ repo. Since you don't want to name your project "activity-tracker-starter", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
-1. Run `npm start` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-1. Make sure both members of your team are collaborators on the forked repo.
+The spec sheet can be found [here](http://frontend.turing.io/projects/fitlit.html).
 
-## Testing
+## Goals and Objectives:
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
+- Implement ES6 classes that communicate to each other as needed.
+- Use object and array prototype methods to perform data manipulation.
+- Create a dashboard that is easy to use and displays information in a clear way.
+- Write modular, reusable code that follows SRP (Single Responsibility Principle).
+- Implement a robust testing suite using TDD.
+Make network requests to retrieve data.
 
+## Technologies Used/ Contributors:
 
-## Data Model
+This wellness application is a group project built by [Geena Jackson](https://github.com/gjax78), [Francesca McConnell](https://github.com/mcfrann), and [George Lemmon](https://github.com/galemmon) during their time at [Turing School of Software and Design](https://turing.edu/). It was built using Javascript, HTML, CSS, and packages used include Mocha and Chai. Project Management included the use of GitHub Projects and GitHub Issues, as well as Excalidraw for the wireboard.
 
-**Users**
+## Setup:
 
-```
-[
-  {
-    "id": [number],
-    "name": [string],
-    "address": [string],
-    "email": [string],
-    "strideLength": [number - feet],
-    "dailyStepGoal": [number - steps],
-    "friends": [array - one-way connection to other user(s)]
-  },
-  ...more user data
-]
-```
+To download and use FitLit, you can fork and/or clone it to your local machine into your desired directory using the terminal - git clone [repo link]. Next navigate (cd) into that directory and enter the following command to open FitLit in your browser - open src/index.html
 
-**Activity**
+Alternatively, click the following link to be sent to the app's deployed site: [FitLit]().
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numSteps": [number - steps],
-    "minutesActive": [number - minutes],
-    "flightsOfStairs": [number - flights]
-  },
-  ...more activity data
-]
-```
+## Wins:
 
-**Hydration**
+- Our team defined our team dynamic and working preferences early, and we referenced them often. We also redefined them accordingly when the project got tough.  We communicated heavily throughout the duration of the project.
+- We successfully implemented new processes with little background information in a short amount of time. 
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numOunces": [number - ounces]
-  },
-  ...more hydration data
-]
-```
-
-**Sleep**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "hoursSlept": [number - hours],
-    "sleepQuality": [number - unitless]
-  },
-  ...more sleep data
-]
-```
+## Challenges:
+- One of the teammates was out sick for a day, while going through the most difficult part of the project. However, because of our DTR that we set at the beginning, our team successfully communicated and we were able to finish the project before the given deadline.
+- Diving into fetch API head first was a steep learning curve. Luckily with the help of mentors, Turing alumni, and cohort mates, we feel well-versed and better prepared for what's ahead.
