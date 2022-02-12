@@ -102,17 +102,17 @@ const displayHydrationInfo = user => {
 
 const displaySleepInfo = sleep => {
   return sleepWidget.innerText = `
-  Sleep information for ${user.returnFirstName()}:
-  Average number of hours slept per day: ${sleep.userAverageHoursSleptPerDay()}
-  Average sleep quality per day over all time: ${sleep.userAverageQualitySleptPerDay()}
-  Hours slept today: ${sleep.hoursSleptPerDay('2020/01/20')}
-  Sleep quality for today: ${sleep.hoursSleptPerDay('2020/01/20')}
-  Hours slept each day over given week: ${sleep.qualitySleptPerDay('2020/01/20')}
-  Sleep quality each day over given week: ${sleep.allUserSleepQuality()}
-  Average hours slept by all users: ${sleep.calculateHrsSleptPerDayOverWeek('2019/06/15')}
-  Average sleep quality by ${sleep.calculateQualSleepPerDayOverWeek('2019/06/15')}
+  ${user.returnFirstName()}'s Sleep Stats
+  Today:
+  Hours slept: ${sleep.hoursSleptPerDay('2020/01/20')}
+  Sleep quality: ${sleep.qualitySleptPerDay('2020/01/20')}
+  Over last week:
+  Average hours slept: ${sleep.calculateHrsSleptPerDayOverWeek('2019/06/15')}
+  Average sleep quality: ${sleep.calculateQualSleepPerDayOverWeek('2019/06/15')}
+  All time:
+  Average hours slept: ${sleep.userAverageHoursSleptPerDay()}
+  Average sleep quality: ${sleep.userAverageQualitySleptPerDay()}
   `
-  //------NEEDS REFACTORING - these messages may be jumbled, double check
 };
 
 
