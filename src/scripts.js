@@ -40,9 +40,18 @@ const generateNewUser = (userData) => {
   user = new User(getRandomUser, hydrationData);
   user.returnCurrentDate()
   user.returnLastWeek()
+  userRepo = new UserRepository(userData, user);
   hydration = new Hydration(user.id, hydrationData, user.date);
-  sleep = new Sleep(user.id, sleepData);
   hydration.calculateOuncesPerDayOverWeek()
+  sleep = new Sleep(user.id, sleepData);
+  sleep.userAverageHoursSleptPerDay();
+  sleep.userAverageQualitySleptPerDay();
+  sleep.hoursSleptPerDay('2020/01/20');
+  sleep.hoursSleptPerDay('2020/01/20');
+  sleep.qualitySleptPerDay('2020/01/20');
+  sleep.allUserSleepQuality();
+  sleep.calculateHrsSleptPerDayOverWeek('2019/06/15');
+  sleep.calculateQualSleepPerDayOverWeek('2019/06/15');
   console.log(user);
   console.log(hydration);
   console.log(sleep);
@@ -72,14 +81,14 @@ const displayUserInfo = user => {
   ${user.dailyStepGoal}
   ${user.friends}
 
-  Average amongst all users: ${user.dailyStepGoal}
+  Average amongst all users: ${user.dailyStepGoal}/${userRepo.averageStepGoal()}
 `};
-
-//NOT WORKING: | ${userRepo.averageStepGoal()
 
 const displayHydrationInfo = user => {
   return hydrationWidget.innerText = `
-  Water today: ${hydration.calculateOuncesPerDayByDate()}
+  Hydration Stats
+  
+  Oz of water today: ${hydration.calculateOuncesPerDayByDate()}
   2020/01/16: ${hydration.week[0].numOunces}
   2020/01/17: ${hydration.week[1].numOunces}
   2020/01/18: ${hydration.week[2].numOunces}
@@ -88,14 +97,25 @@ const displayHydrationInfo = user => {
   2020/01/21: ${hydration.week[3].numOunces}
   2020/01/22: ${hydration.week[3].numOunces}
 `};
-
-//  ${hydration.calculateAvgWater()}
+//----------does calculateOuncesPerDayByDate() in above function need a date?
 
 const displaySleepInfo = sleep => {
   return sleepWidget.innerText = `
-  ${sleep.userID}`
-};
+  ${user.returnFirstName()}'s Sleep Stats
 
+  Today:
+
+  Hours slept: ${sleep.hoursSleptPerDay('2020/01/20')} | Sleep quality: ${sleep.qualitySleptPerDay('2020/01/20')}
+
+  Over last week:
+
+  Average hours slept: ${sleep.calculateHrsSleptPerDayOverWeek('2019/06/15')} | Average sleep quality: ${sleep.calculateQualSleepPerDayOverWeek('2019/06/15')}
+
+  All time:
+
+  Average hours slept: ${sleep.userAverageHoursSleptPerDay()} | Average sleep quality: ${sleep.userAverageQualitySleptPerDay()}
+  `
+};
 
 
 //---------------- Scripts ------------------------

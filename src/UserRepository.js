@@ -1,8 +1,8 @@
 
 class UserRepository {
-  constructor(userData) {
+  constructor(userData, user) {
     this.userData = userData;
-    this.currentUser = '';
+    this.currentUser = user;
   };
 
   findID(id) {

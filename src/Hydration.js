@@ -15,9 +15,9 @@ class Hydration {
     };
 
     calculateOuncesPerDayByDate(date) {
-          let totalOunces = this.userHydrationData.find(entry => entry.date === this.date)
-          return totalOunces.numOunces
-        }
+        let totalOunces = this.userHydrationData.find(entry => entry.date === this.date)
+        return totalOunces.numOunces
+    }
 
     calculateOuncesPerDayOverWeek() {
        return this.week = this.userHydrationData.map(entry => entry).reverse().filter((entry, index) => (index <= 6)).reverse()
