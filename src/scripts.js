@@ -120,6 +120,11 @@ const displayUserInfo = user => {
 
 const displayHydrationInfo = (user, hydration) => {
   return hydrationWidget.innerHTML = `
+
+  <p>
+    <img src="https://user-images.githubusercontent.com/88151743/153778199-6085b751-5f2d-45b8-b6f4-342bec5fbb5c.png"/>
+  </p>
+
   <h2>Your Hydration Stats:</h2>
   <h3> Oz of water today: ${hydration.calculateOuncesPerDayByDate()}</h3><br>
   Oz of water on ${hydration.week[0].date}: ${hydration.week[0].numOunces}<br><br>
@@ -133,6 +138,9 @@ const displayHydrationInfo = (user, hydration) => {
 
 const displaySleepInfo = sleep => {
   return sleepWidget.innerHTML = `
+  <p>
+    <img src="https://img.icons8.com/external-justicon-lineal-justicon/64/000000/external-sleep-emoji-justicon-lineal-justicon.png"/>
+  </p>
   <h2>Your Sleep Stats:</h2>
   Today:<br>
   Hours slept: ${sleep.hoursSleptPerDay('2020/01/20')} | Sleep quality: ${sleep.qualitySleptPerDay('2020/01/20')}<br><br>
@@ -145,6 +153,9 @@ const displaySleepInfo = sleep => {
 
 const displayActivityInfo = () => {
   return activityWidget.innerHTML = `
+    <p>
+  <img src="https://img.icons8.com/ios/50/000000/walking--v1.png"/>
+    <p>
   <h2>Your Activity Data:</h2>
   `
 };
