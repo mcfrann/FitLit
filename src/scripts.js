@@ -1,11 +1,10 @@
-
 //----------------- Imports--------------------
 import fetchAPI from './apiCalls';
 import User from '../src/user';
-import Hydration from '../src/Hydration'
+import Hydration from '../src/Hydration';
 import UserRepository from './UserRepository';
 import Sleep from '../src/Sleep';
-import Friend from '../src/friend'
+import Friend from '../src/friend';
 import './css/styles.css';
 
 //----------------- Query Selectors ------------
@@ -95,14 +94,13 @@ const displayCurrentUser = () => {
 };
 
 //---------------- Updating DOM --------------------
-
 const displayUserName = user => {
   return welcomeMessage.innerText = `Welcome,
   ${user.returnFirstName()}.`;
 };
 
 const displayUserInfo = user => {
-  let friendFirstName = user.formattedFriends.map(friend => ' ' + friend.name.split(" ")[0])
+  let friendFirstName = user.formattedFriends.map(friend => ' ' + friend.name.split(" ")[0]);
   return userInfo.innerHTML = `
   <h2>About you:</h2>
   <p>${user.name}<br>
@@ -140,17 +138,14 @@ const displaySleepInfo = sleep => {
   Average hours slept: ${sleep.calculateHrsSleptPerDayOverWeek('2019/06/15')} | Average sleep quality: ${sleep.calculateQualSleepPerDayOverWeek('2019/06/15')}<br><br>
   All time:<br>
   Average hours slept: ${sleep.userAverageHoursSleptPerDayTotal()} | Average sleep quality: ${sleep.userAverageQualitySleptPerDay()}
-  `
-};
+`};
 
 const displayActivityInfo = () => {
   return activityWidget.innerHTML = `
   <h2>Your Activity Data:</h2>
-  `
-};
+`};
 
 //---------------- Scripts ------------------------
-
 Promise.all([fetchUserData, fetchHydrationData, fetchSleepData, fetchActivityData])
 .then(values => {
   userData = values[0].userData;
