@@ -42,10 +42,6 @@ const generatePageUser = (userData) => {
   generateNewHydration(user.id, hydrationData, user.date);
   generateNewSleep(user.id, sleepData);
   generateNewFriends(user.friends, userData, activityData);
-  // console.log(user.formattedFriends)
-  // console.log(user);
-  // console.log(hydration);
-  // console.log(sleep);
   displayCurrentUser();
 };
 
@@ -70,7 +66,7 @@ const generateNewHydration = () => {
 
 const generateNewSleep = () => {
   const newSleep = new Sleep(user.id, sleepData);
-  newSleep.userAverageHoursSleptPerDay();
+  newSleep.userAverageHoursSleptPerDayTotal();
   newSleep.userAverageQualitySleptPerDay();
   newSleep.hoursSleptPerDay('2020/01/20');
   newSleep.hoursSleptPerDay('2020/01/20');
@@ -98,7 +94,6 @@ const displayCurrentUser = () => {
   displayActivityInfo();
 };
 
-
 //---------------- Updating DOM --------------------
 
 const displayUserName = user => {
@@ -108,47 +103,49 @@ const displayUserName = user => {
 
 const displayUserInfo = user => {
   let friendFirstName = user.formattedFriends.map(friend => ' ' + friend.name.split(" ")[0])
-  return userInfo.innerText = `
-  ${user.name}
-  ${user.email}
-  ${user.address}
-  ${user.strideLength}
-  ${user.dailyStepGoal}
-  ${friendFirstName}
-
-  Average amongst all users: ${user.dailyStepGoal}/${userRepo.averageStepGoal()}
+  return userInfo.innerHTML = `
+  <h2>About you:</h2>
+  <p>${user.name}<br>
+  ${user.email}<br>
+  ${user.address}<br><br>
+  Your stride length:<br>
+  ${user.strideLength} feet<br><br>
+  Your daily step goal:<br>
+  ${user.dailyStepGoal}<br><br>
+  Your friends:<br>
+  ${friendFirstName}<br><br>
+  Your step goal compared to the average step goal amongst all users:<br>
+  ${user.dailyStepGoal}/${userRepo.averageStepGoal()}</p><br>
 `};
 
 const displayHydrationInfo = (user, hydration) => {
-  return hydrationWidget.innerText = `
-  ${user.returnFirstName()}'s Hydration Stats:
-
-  Oz of water today: ${hydration.calculateOuncesPerDayByDate()}
-  2020/01/16: ${hydration.week[0].numOunces}
-  2020/01/17: ${hydration.week[1].numOunces}
-  2020/01/18: ${hydration.week[2].numOunces}
-  2020/01/19: ${hydration.week[3].numOunces}
-  2020/01/20: ${hydration.week[4].numOunces}
-  2020/01/21: ${hydration.week[5].numOunces}
-  2020/01/22: ${hydration.week[6].numOunces}
+  return hydrationWidget.innerHTML = `
+  <h2>Your Hydration Stats:</h2>
+  <h3> Oz of water today: ${hydration.calculateOuncesPerDayByDate()}</h3><br>
+  Oz of water on ${hydration.week[0].date}: ${hydration.week[0].numOunces}<br><br>
+  Oz of water on ${hydration.week[1].date}: ${hydration.week[1].numOunces}<br><br>
+  Oz of water on ${hydration.week[2].date}: ${hydration.week[2].numOunces}<br><br>
+  Oz of water on ${hydration.week[3].date}: ${hydration.week[3].numOunces}<br><br>
+  Oz of water on ${hydration.week[4].date}: ${hydration.week[4].numOunces}<br><br>
+  Oz of water on ${hydration.week[5].date}: ${hydration.week[5].numOunces}<br><br>
+  Oz of water on ${hydration.week[6].date}: ${hydration.week[6].numOunces}<br><br>
 `};
 
 const displaySleepInfo = sleep => {
-  return sleepWidget.innerText = `
-  ${user.returnFirstName()}'s Sleep Stats:
-
-  Today:
-  Hours slept: ${sleep.hoursSleptPerDay('2020/01/20')} | Sleep quality: ${sleep.qualitySleptPerDay('2020/01/20')}
-  Over last week:
-  Average hours slept: ${sleep.calculateHrsSleptPerDayOverWeek('2019/06/15')} | Average sleep quality: ${sleep.calculateQualSleepPerDayOverWeek('2019/06/15')}
-  All time:
-  Average hours slept: ${sleep.userAverageHoursSleptPerDay()} | Average sleep quality: ${sleep.userAverageQualitySleptPerDay()}
+  return sleepWidget.innerHTML = `
+  <h2>Your Sleep Stats:</h2>
+  Today:<br>
+  Hours slept: ${sleep.hoursSleptPerDay('2020/01/20')} | Sleep quality: ${sleep.qualitySleptPerDay('2020/01/20')}<br><br>
+  Over last week:<br>
+  Average hours slept: ${sleep.calculateHrsSleptPerDayOverWeek('2019/06/15')} | Average sleep quality: ${sleep.calculateQualSleepPerDayOverWeek('2019/06/15')}<br><br>
+  All time:<br>
+  Average hours slept: ${sleep.userAverageHoursSleptPerDayTotal()} | Average sleep quality: ${sleep.userAverageQualitySleptPerDay()}
   `
 };
 
 const displayActivityInfo = () => {
-  return activityWidget.innerText = `
-  ${user.returnFirstName()}'s Activity Data:
+  return activityWidget.innerHTML = `
+  <h2>Your Activity Data:</h2>
   `
 };
 
@@ -162,17 +159,3 @@ Promise.all([fetchUserData, fetchHydrationData, fetchSleepData, fetchActivityDat
   activityData = values[3].activityData;
   generatePageUser(userData);
 });
-
-
-//---------------- Default/Example given ------------------------
-// console.log(userData,"<>>>>userData")
-// // An example of how you tell webpack to use a CSS file
-// import './css/styles.css';
-//
-// // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
-//
-// console.log('This is the JavaScript entry file - your code begins here.');
-//
-// // An example of how you tell webpack to use a JS file
-//
