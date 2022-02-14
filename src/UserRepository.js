@@ -1,4 +1,3 @@
-
 class UserRepository {
   constructor(userData, user) {
     this.userData = userData;

@@ -33,7 +33,7 @@ class Sleep {
         let weekAverage = floatingWeek.reduce((acc, day) => {
           acc += day
           return acc
-        }, 0)
+        }, 0);
         return (weekAverage / 7).toFixed(1);
      }
 
@@ -43,9 +43,9 @@ class Sleep {
         let weekAverage = floatingWeek.reduce((acc, day) => {
           acc += day
           return acc
-        }, 0)
+        }, 0);
         return (weekAverage / 7).toFixed(1);
-     }
+     };
 
     allUserSleepQuality() {
         let totalAverage = this.rawData.reduce((acc, userLog) => {

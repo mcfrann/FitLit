@@ -1,5 +1,3 @@
-
-
 const fetchAPI = {
   getUserData() {
     return fetch('https://fitlit-api.herokuapp.com/api/v1/users')
@@ -16,7 +14,7 @@ const fetchAPI = {
   getActivityData() {
     return fetch('https://fitlit-api.herokuapp.com/api/v1/activity')
         .then(response => response.json())
-  }
+  },
 };
 
-export default fetchAPI
+export default fetchAPI;
