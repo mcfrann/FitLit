@@ -2,10 +2,10 @@ class Sleep {
     constructor(userID, sleepData) {
         this.userID = userID;
         this.rawData = sleepData;
-        this.userSleepData = sleepData.filter(data => data.userID === this.userID);   
+        this.userSleepData = sleepData.filter(data => data.userID === this.userID);
     };
 
-    userAverageHoursSleptPerDay() {
+    userAverageHoursSleptPerDayTotal() {
         let sleptAverage = this.userSleepData.reduce((acc, userLog) => {
             return acc += userLog.hoursSlept / this.userSleepData.length;
         }, 0);
@@ -30,14 +30,22 @@ class Sleep {
     calculateHrsSleptPerDayOverWeek(startDate) {
         let dateIndex = this.userSleepData.find(entry => startDate === entry.date);
         let floatingWeek = this.userSleepData.slice(dateIndex, 7).map(user => user.hoursSlept);
-        return floatingWeek;
+        let weekAverage = floatingWeek.reduce((acc, day) => {
+          acc += day
+          return acc
+        }, 0)
+        return (weekAverage / 7).toFixed(1);
      }
 
      calculateQualSleepPerDayOverWeek(startDate) {
         let dateIndex = this.userSleepData.find(entry => startDate === entry.date);
         let floatingWeek = this.userSleepData.slice(dateIndex, 7).map(user => user.sleepQuality);
-        return floatingWeek;
-     };
+        let weekAverage = floatingWeek.reduce((acc, day) => {
+          acc += day
+          return acc
+        }, 0)
+        return (weekAverage / 7).toFixed(1);
+     }
 
     allUserSleepQuality() {
         let totalAverage = this.rawData.reduce((acc, userLog) => {
