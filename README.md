@@ -19,6 +19,8 @@ Make network requests to retrieve data.
 
 This wellness application is a group project built by [Geena Jackson](https://github.com/gjax78), [Francesca McConnell](https://github.com/mcfrann), and [George Lemmon](https://github.com/galemmon) during their time at [Turing School of Software and Design](https://turing.edu/). It was built using Javascript, HTML, CSS, and packages used include Mocha and Chai. Project Management included the use of GitHub Projects and GitHub Issues, as well as Excalidraw for the wireboard.
 
+** Gap in code disparity due to adding large data files to test our implementation code. Original disparity is less than 10%. 
+
 ## Setup:
 
 To download and use FitLit, you can fork and/or clone it to your local machine into your desired directory using the terminal - git clone [repo link]. Next navigate (cd) into that directory and enter the following command to open FitLit in your browser - open src/index.html
@@ -28,7 +30,7 @@ Alternatively, click the following link to be sent to the app's deployed site: [
 ## Wins:
 
 - Our team defined our team dynamic and working preferences early, and we referenced them often. We also redefined them accordingly when the project got tough.  We communicated heavily throughout the duration of the project.
-- We successfully implemented new processes with little background information in a short amount of time. 
+- We successfully implemented new processes with little background information in a short amount of time.
 
 ## Challenges:
 - One of the teammates was out sick for a day, while going through the most difficult part of the project. However, because of our DTR that we set at the beginning, our team successfully communicated and we were able to finish the project before the given deadline.
