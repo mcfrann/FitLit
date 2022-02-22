@@ -2,8 +2,8 @@ class Friend {
     constructor(friendId, userData) {
         this.userData = userData;
         this.id = friendId;
-        this.name = '';
-        this.steps = '';
+        this.name = null;
+        this.steps = null;
     };
 
     assignName() {

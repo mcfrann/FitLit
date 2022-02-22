@@ -4,7 +4,7 @@ class Hydration {
         this.rawData = hydrationData;
         this.userHydrationData = null;
         this.date = date;
-        this.week = [];
+        this.week = null;
     };
 
     findUserID(hydrationData) {

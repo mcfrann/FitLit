@@ -16,14 +16,14 @@ const sleepWidget = document.querySelector(".user-sleep");
 const activityWidget = document.querySelector(".user-activity");
 
 //----------------- Global Vars ------------------
-let userData = [];
-let hydrationData = [];
-let sleepData = [];
-let activityData = [];
-let userRepo = '';
-let user = '';
-let hydration = '';
-let sleep = '';
+let userData = null;
+let hydrationData = null;
+let sleepData = null;
+let activityData = null;
+let userRepo = null;
+let user = null;
+let hydration = null;
+let sleep = null;
 const fetchUserData = fetchAPI.getUserData();
 const fetchHydrationData = fetchAPI.getHydrationData();
 const fetchSleepData = fetchAPI.getSleepData();
