@@ -47,6 +47,7 @@ const generatePageUser = (userData) => {
 const generateNewUser = (userData, hydrationData) => {
   const getRandomUser = getRandomID(userData);
   const newUser = new User(getRandomUser, hydrationData, sleepData, activityData);
+  newUser.findUserHydration(hydrationData)
   newUser.returnCurrentDate();
   newUser.returnLastWeek();
   return user = newUser;
@@ -59,6 +60,7 @@ const generateNewUserRepo = (userData, user) => {
 
 const generateNewHydration = () => {
   const newHydration = new Hydration(user.id, hydrationData, user.date);
+  newHydration.findUserID(hydrationData);
   newHydration.calculateOuncesPerDayOverWeek();
   return hydration = newHydration;
 };

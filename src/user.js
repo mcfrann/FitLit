@@ -7,10 +7,14 @@ class User {
     this.strideLength = user.strideLength;
     this.dailyStepGoal = user.dailyStepGoal;
     this.friends = user.friends;
-    this.formattedFriends = '';
+    this.formattedFriends = null;
+    this.userHydration = null;
+    this.date = null;
+    this.week = null;
+  };
+
+  findUserHydration(hydration) {
     this.userHydration = hydration.filter(data => data.userID === this.id);
-    this.date = '';
-    this.week = [];
   };
 
   returnFirstName() {
