@@ -30,6 +30,17 @@ const fetchSleepData = fetchAPI.getSleepData();
 const fetchActivityData = fetchAPI.getActivityData();
 
 //---------------- Functions --------------------
+const renderPage = () => {
+  Promise.all([fetchUserData, fetchHydrationData, fetchSleepData, fetchActivityData])
+    .then(values => {
+      userData = values[0].userData;
+      hydrationData = values[1].hydrationData;
+      sleepData = values[2].sleepData;
+      activityData = values[3].activityData;
+        generatePageUser(userData);
+    });
+};
+
 const getRandomID = array => {
   const randomIndex = array[Math.floor(Math.random() * array.length)];
   return randomIndex;
@@ -160,11 +171,5 @@ const displayActivityInfo = () => {
 `};
 
 //---------------- Scripts ------------------------
-Promise.all([fetchUserData, fetchHydrationData, fetchSleepData, fetchActivityData])
-.then(values => {
-  userData = values[0].userData;
-  hydrationData = values[1].hydrationData;
-  sleepData = values[2].sleepData;
-  activityData = values[3].activityData;
-  generatePageUser(userData);
-});
+
+window.onload = (event) => (event, renderPage());
