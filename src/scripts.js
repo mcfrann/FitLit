@@ -65,6 +65,7 @@ const generateNewHydration = () => {
 
 const generateNewSleep = () => {
   const newSleep = new Sleep(user.id, sleepData);
+  newSleep.findUserID(sleepData);
   newSleep.userAverageHoursSleptPerDayTotal();
   newSleep.userAverageQualitySleptPerDay();
   newSleep.hoursSleptPerDay('2020/01/20');
