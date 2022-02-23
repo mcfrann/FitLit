@@ -4,7 +4,6 @@ import User from '../src/user';
 import Hydration from '../src/Hydration';
 import UserRepository from './UserRepository';
 import Sleep from '../src/Sleep';
-import Friend from '../src/friend';
 import './css/styles.css';
 
 //----------------- Query Selectors ------------
@@ -51,7 +50,7 @@ const generatePageUser = (userData) => {
   generateNewUserRepo(userData, user);
   generateNewHydration(user.id, hydrationData, user.date);
   generateNewSleep(user.id, sleepData);
-  generateNewFriends(user.friends, userData, activityData);
+  user.generateFormattedFriends(user.friends, userData);
   displayCurrentUser();
 };
 
@@ -89,15 +88,6 @@ const generateNewSleep = () => {
   return sleep = newSleep;
 };
 
-const generateNewFriends = (userFriends, userData, activityData) => {
-  let userRealFriends = [];
-  userFriends.map(friendId => userRealFriends.push(new Friend(friendId, userData, activityData)));
-  userRealFriends.forEach(friend => {
-    friend.assignName();
-  });
-  return user.formattedFriends = userRealFriends;
-};
-
 const displayCurrentUser = () => {
   displayUserName(user);
   displayUserInfo(user);
@@ -113,7 +103,7 @@ const displayUserName = user => {
 };
 
 const displayUserInfo = user => {
-  let friendFirstName = user.formattedFriends.map(friend => ' ' + friend.name.split(" ")[0]);
+  let friendFirstName = user.formattedFriends.map(friend => ' ' + friend.split(" ")[0]);
   return userInfo.innerHTML = `
   <h2>About you:</h2>
     <p>${user.name}<br>
