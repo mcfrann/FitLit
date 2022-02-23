@@ -9,25 +9,25 @@ class Sleep {
         this.userSleepData = (sleepData.filter(data => data.userID === this.userID));
     };
     
-    userAverageHoursSleptPerDayTotal() {
+    getUserAverageHoursSleptPerDayTotal() {
         let sleptAverage = this.userSleepData.reduce((acc, userLog) => {
             return acc += userLog.hoursSlept / this.userSleepData.length;
         }, 0);
         return sleptAverage.toFixed(1);
     };
 
-    userAverageQualitySleptPerDay() {
+    getUserAverageQualitySleptPerDay() {
         let qualityAverage = this.userSleepData.reduce((acc, userLog) => {
             return acc += userLog.sleepQuality / this.userSleepData.length;
         }, 0);
         return qualityAverage.toFixed(1);
     };
 
-    hoursSleptPerDay(date) {
+    getHoursSleptPerDay(date) {
         return this.userSleepData.find(entry => entry.date === date).hoursSlept;
     };
 
-    qualitySleptPerDay(date) {
+    getQualitySleptPerDay(date) {
         return this.userSleepData.find(entry => entry.date === date).sleepQuality;
     };
 
@@ -51,7 +51,7 @@ class Sleep {
         return (weekAverage / 7).toFixed(1);
      };
 
-    allUserSleepQuality() {
+    getAllUserSleepQuality() {
         let totalAverage = this.rawData.reduce((acc, userLog) => {
             return acc += userLog.sleepQuality / this.rawData.length;
         }, 0);

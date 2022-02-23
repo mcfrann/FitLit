@@ -39,22 +39,22 @@ describe('Sleep', () => {
   });
 
   it('should calculate average hours slept per day', function () {
-    const avg = sleep.userAverageHoursSleptPerDayTotal();
+    const avg = sleep.getUserAverageHoursSleptPerDayTotal();
     expect(avg).to.equal('7.4');
   });
 
   it('should calculate average quality slept per day', function () {
-    const avg = sleep.userAverageQualitySleptPerDay();
+    const avg = sleep.getUserAverageQualitySleptPerDay();
     expect(avg).to.equal("3.1");
   });
 
   it('should find hours slept in a day', function () {
-    const hrsSlept = sleep.hoursSleptPerDay("2019/06/15");
+    const hrsSlept = sleep.getHoursSleptPerDay("2019/06/15");
     expect(hrsSlept).to.equal(5.4);
   });
 
   it('should find quality slept in a day', function () {
-    const qualSlept = sleep.qualitySleptPerDay("2019/06/15");
+    const qualSlept = sleep.getQualitySleptPerDay("2019/06/15");
     expect(qualSlept).to.equal(3);
   });
 
@@ -69,7 +69,7 @@ describe('Sleep', () => {
   });
 
   it("should calculate average sleep quality for all users", function () {
-    const avgQualAllUsers = sleep.allUserSleepQuality();
+    const avgQualAllUsers = sleep.getAllUserSleepQuality();
     expect(avgQualAllUsers).to.equal('3.0');
   });
 });
