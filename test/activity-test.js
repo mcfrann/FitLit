@@ -52,11 +52,13 @@ describe('Activity', () => {
   });
 
   it('should show minutes active', function () {
-    expect(activity.minutesActive).to.equal(142);
+    activity.findMinutesActive()
+    expect(activity.minutesActive).to.equal(135);
   });
 
   it('should show flights of stairs climbed', function () {
-    expect(activity.flightsOfStairs).to.equal(29);
+    activity.findStairsClimbed()
+    expect(activity.flightsOfStairs).to.equal(21);
   });
 
   // it('should show flights of stairs climbed', function () {
