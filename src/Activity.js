@@ -7,8 +7,8 @@ class Activity {
     // this.rawData = activityData;
     this.userActivity = null;
     this.numSteps = null;
-    // this.minutesActive =
-    // this.flightsOfStairs =
+    this.minutesActive = null;
+    this.flightsOfStairs = null;
   }
 
   findUserActivity(activityData) {
@@ -19,7 +19,13 @@ class Activity {
     this.numSteps = this.userActivity.find(data => data.date === this.date).numSteps
   }
 
+  findMinutesActive() {
+    this.minutesActive = this.userActivity.find(data => data.date === this.date).minutesActive
+  }
 
+  findStairsClimbed() {
+    this.flightsOfStairs = this.userActivity.find(data => data.date === this.date).flightsOfStairs
+  }
 }
 
 
