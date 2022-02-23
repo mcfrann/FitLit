@@ -28,6 +28,18 @@ class User {
   returnLastWeek() {
     return this.week = this.userHydration.map(entry => entry.date).reverse().filter((entry, index) => (index <= 6)).reverse();
   };
+
+  generateFormattedFriends(userFriends, userData) {
+    let friendsNames = [];
+    userFriends.forEach(id => {
+      userData.find(user => {
+        if(id === user.id){
+          return friendsNames.push(user.name);
+        };
+      });
+    });
+    return this.formattedFriends = friendsNames;
+  };
 };
 
 export default User;
