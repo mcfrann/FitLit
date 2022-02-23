@@ -61,8 +61,13 @@ describe('Activity', () => {
     expect(activity.flightsOfStairs).to.equal(21);
   });
 
-  // it('should show flights of stairs climbed', function () {
-  //   activity.findM
-  //   expect(activity.flightsOfStairs).to.equal(32);
-  // });
+  it('should find miles walked for date', function () {
+    activity.findMilesWalked(user.date, user.strideLength)
+    expect(activity.milesWalked).to.equal('2.55');
+  });
+
+  it('should find minutes active averaged for a given week', function () {
+    let minutesOverWeek = activity.findMinutesActiveWeekAverage(user.date)
+    expect(minutesOverWeek).to.equal('156.4');
+  });
 });
