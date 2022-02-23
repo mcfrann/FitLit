@@ -79,12 +79,11 @@ const generateNewHydration = () => {
 const generateNewSleep = () => {
   const newSleep = new Sleep(user.id, sleepData);
   newSleep.findUserID(sleepData);
-  newSleep.userAverageHoursSleptPerDayTotal();
-  newSleep.userAverageQualitySleptPerDay();
-  newSleep.hoursSleptPerDay('2020/01/20');
-  newSleep.hoursSleptPerDay('2020/01/20');
-  newSleep.qualitySleptPerDay('2020/01/20');
-  newSleep.allUserSleepQuality();
+  newSleep.getUserAverageHoursSleptPerDayTotal();
+  newSleep.getUserAverageQualitySleptPerDay();
+  newSleep.getHoursSleptPerDay('2020/01/20');
+  newSleep.getQualitySleptPerDay('2020/01/20');
+  newSleep.getAllUserSleepQuality();
   newSleep.calculateHrsSleptPerDayOverWeek('2019/06/15');
   newSleep.calculateQualSleepPerDayOverWeek('2019/06/15');
   return sleep = newSleep;
@@ -127,7 +126,7 @@ const displayUserInfo = user => {
     Your friends:<br>
     ${friendFirstName}<br><br>
     Your step goal compared to the average step goal amongst all users:<br>
-    ${user.dailyStepGoal}/${userRepo.averageStepGoal()}</p><br>
+    ${user.dailyStepGoal}/${userRepo.findAverageStepGoal()}</p><br>
 `};
 
 const displayHydrationInfo = (user, hydration) => {
@@ -153,11 +152,11 @@ const displaySleepInfo = sleep => {
   <br>
   <h2>Your Sleep Stats:</h2>
     <h3>Today:</h3>
-      <p>Hours slept: ${sleep.hoursSleptPerDay('2020/01/20')} | Sleep quality: ${sleep.qualitySleptPerDay('2020/01/20')}<br>
+      <p>Hours slept: ${sleep.getHoursSleptPerDay('2020/01/20')} | Sleep quality: ${sleep.getQualitySleptPerDay('2020/01/20')}<br>
     <h3>Over last week:</h3>
       <p>Average hours slept: ${sleep.calculateHrsSleptPerDayOverWeek('2019/06/15')} | Average sleep quality: ${sleep.calculateQualSleepPerDayOverWeek('2019/06/15')}<br>
     <h3>All time:</h3>
-      <p>Average hours slept: ${sleep.userAverageHoursSleptPerDayTotal()} | Average sleep quality: ${sleep.userAverageQualitySleptPerDay()}</p>
+      <p>Average hours slept: ${sleep.getUserAverageHoursSleptPerDayTotal()} | Average sleep quality: ${sleep.getUserAverageQualitySleptPerDay()}</p><br>
 `};
 
 const displayActivityInfo = () => {
