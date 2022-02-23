@@ -39,6 +39,7 @@ describe('Sleep', () => {
   });
 
   it('should calculate average hours slept per day', function () {
+    sleep.findUserID(sleepData)
     const avg = sleep.getUserAverageHoursSleptPerDayTotal();
     expect(avg).to.equal('7.4');
   });
