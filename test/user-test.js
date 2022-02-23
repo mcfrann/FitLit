@@ -48,13 +48,14 @@ describe('User', () => {
   });
 
   it('should invoke returnCurrentDate method and update date', function () {
+    user.findUserHydration(hydrationData)
     user.returnCurrentDate();
     expect(user.date).to.equal("2020/01/22");
   });
 
   it('should invoke returnLastWeek method and show the week', function () {
     user.returnLastWeek();
-    
+
     expect(user.week).to.eql([
       '2020/01/16',
       '2020/01/17',
@@ -67,7 +68,7 @@ describe('User', () => {
   });
 
   it('should show user hydration', function () {
-    expect(user.userHydration[0]).to.eql(userHydrationDataPoint); 
+    expect(user.userHydration[0]).to.eql(userHydrationDataPoint);
   });
 
   it("should return a user's first name only", function () {
