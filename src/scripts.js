@@ -11,9 +11,9 @@ import './css/styles.css';
 const userInfo = document.querySelector('.user-info');
 const userName = document.querySelector('.user-name');
 const welcomeMessage = document.querySelector('.welcome-message');
-const hydrationWidget = document.querySelector(".user-hydration");
-const sleepWidget = document.querySelector(".user-sleep");
-const activityWidget = document.querySelector(".user-activity");
+const hydrationWidget = document.querySelector('.user-hydration');
+const sleepWidget = document.querySelector('.user-sleep');
+const activityWidget = document.querySelector('.user-activity');
 
 //----------------- Global Vars ------------------
 let userData = null;
