@@ -132,7 +132,7 @@ const displayUserInfo = user => {
 const displayHydrationInfo = (user, hydration) => {
   return hydrationWidget.innerHTML = `
   <br>
-  <img src="https://user-images.githubusercontent.com/88151743/153778199-6085b751-5f2d-45b8-b6f4-342bec5fbb5c.png"/>
+  <img src="https://user-images.githubusercontent.com/88151743/153778199-6085b751-5f2d-45b8-b6f4-342bec5fbb5c.png" alt="water drop"/>
   <br>
   <h2>Your Hydration Stats:</h2>
     <h3> Water consumption today: ${hydration.calculateOuncesPerDayByDate()} oz</h3>
@@ -148,7 +148,7 @@ const displayHydrationInfo = (user, hydration) => {
 const displaySleepInfo = sleep => {
   return sleepWidget.innerHTML = `
   <br>
-  <img src="https://img.icons8.com/external-justicon-lineal-justicon/64/000000/external-sleep-emoji-justicon-lineal-justicon.png"/>
+  <img src="https://img.icons8.com/external-justicon-lineal-justicon/64/000000/external-sleep-emoji-justicon-lineal-justicon.png" alt="sleeping person emoji"/>
   <br>
   <h2>Your Sleep Stats:</h2>
     <h3>Today:</h3>
@@ -162,7 +162,7 @@ const displaySleepInfo = sleep => {
 const displayActivityInfo = () => {
   return activityWidget.innerHTML = `
   <br>
-  <img src="https://img.icons8.com/ios/50/000000/walking--v1.png"/>
+  <img src="https://img.icons8.com/ios/50/000000/walking--v1.png" alt="walking person emoji"/>
   <br>
   <h2>Your Activity Data:</h2>
 `};
