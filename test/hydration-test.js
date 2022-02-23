@@ -43,6 +43,7 @@ describe('Hydration', () => {
   });
 
   it('should show week', function () {
+    hydration.findUserID(hydrationData)
     const hydrationWeek = hydration.calculateOuncesPerDayOverWeek()
     expect(hydrationWeek).to.eql([
       { userID: 4, date: '2020/01/16', numOunces: 28 },
@@ -64,7 +65,7 @@ describe('Hydration', () => {
     const ouncesPerDay = hydration.calculateOuncesPerDayByDate("2019/06/15");
     expect(ouncesPerDay).to.equal(85);
   });
-  
+
   it('should calculate ounces per day over a week', function () {
     const ouncesPerWeek = hydration.calculateOuncesPerDayOverWeek();
     const ouncesPerWeekByDay = ouncesPerWeek.map(entry => entry.numOunces);
