@@ -1,3 +1,5 @@
+import activityData from "./data/activity-data";
+
 class Activity {
   constructor(user, date, activityData) {
     this.userID = user.id;
@@ -41,8 +43,53 @@ class Activity {
       return acc
     }, 0);
       return (weekAverage / 7).toFixed(1);
+  }
+
+  determineStepGoalReached(user, date) {
+    if (user.dailyStepGoal < this.userActivity.find(data => data.date === date).numSteps) {
+      return true
+    } else {
+      return false
     }
   }
+
+  findExceededGoalDays(user) {
+    return this.userActivity.filter(data => data.numSteps > user.dailyStepGoal)
+  }
+
+  findStairRecord() {
+    return this.userActivity.sort((least, most) => least.flightsOfStairs - most.flightsOfStairs).pop().flightsOfStairs
+  }
+
+  findAvgStairsAllUsers(date) {
+    let activityDate = activityData.filter(data => data.date === date)
+    let stairs = activityDate.map(element => element.flightsOfStairs)
+    let averageStairs = stairs.reduce((acc, currentValue) => {
+      return (acc += currentValue)
+    }, 0) / stairs.length
+    return averageStairs
+  }
+
+  findAvgStepsAllUsers(date) {
+    let activityDate = activityData.filter(data => data.date === date)
+    let steps = activityDate.map(element => element.numSteps)
+    let averageSteps = steps.reduce((acc, currentValue) => {
+      return (acc += currentValue)
+    }, 0) / steps.length
+    return averageSteps
+  }
+
+  findMinutesActiveOnDate(date) {
+    let activityDate = activityData.filter(data => data.date === date)
+    let minutes = activityDate.map(element => element.minutesActive)
+    let averageMinutes = minutes.reduce((acc, currentValue) => {
+      return (acc += currentValue)
+    }, 0) / minutes.length
+    return averageMinutes
+  }
+}
+
+
 
 
 
