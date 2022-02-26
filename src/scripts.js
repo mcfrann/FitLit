@@ -10,7 +10,7 @@ import './css/styles.css';
 //------------- Query Selectors -------------------
 
 //ADDED:
-const hydrationButton = document.querySelector('.submit-hydration-data')
+const hydrationForm = document.querySelector('.hydration-form')
 const hydrationDateInput = document.querySelector('.hydration-date-input');
 const hydrationOuncesInput = document.querySelector('.hydration-ounces-input');
 // const sleepDateInput = document.querySelector('.sleep-date-input');
@@ -31,8 +31,6 @@ const fetchUserData = fetchAPI.getUserData();
 const fetchHydrationData = fetchAPI.getHydrationData();
 const fetchSleepData = fetchAPI.getSleepData();
 const fetchActivityData = fetchAPI.getActivityData();
-// ADDED:
-const postHydrationData = fetchAPI.postHydrationData();
 
 //---------------- Functions --------------------
 const renderPage = () => {
@@ -108,23 +106,17 @@ window.onload = (event) => (event, renderPage());
 
 //---------------- Post ----------------------
 
-//ADDED:
-
-
-let newHydration = {
-  "userID": user.id,
-  "date": hydrationDateInput.value,
-  "numOunces": hydrationOuncesInput.value
-}
-
-hydrationButton.addEventListener('submit', (e) => {
+hydrationForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
-  const newHydro = newHydration;
-  postHydrationData(newHydro);
+  const newHydro = {
+    "userID": user.id,
+    "date": hydrationDateInput.value,
+    "numOunces": hydrationOuncesInput.value
+  };
+  fetchAPI.postHydrationData(newHydro);
   console.log(newHydro)
   e.target.reset();
 });
 
-export default newHydration
 
