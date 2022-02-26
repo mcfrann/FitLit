@@ -4,6 +4,7 @@ const welcomeMessage = document.querySelector('.welcome-message');
 const hydrationWidget = document.querySelector('.user-hydration');
 const sleepWidget = document.querySelector('.user-sleep');
 const activityWidget = document.querySelector('.user-activity');
+const displayHydrationTile = document.querySelector('.display-hydration-data')
 
 
 const domUpdates = {
@@ -31,7 +32,7 @@ const domUpdates = {
   `},
 
   displayHydrationInfo(user, hydration) {
-    return hydrationWidget.innerHTML = `
+    return displayHydrationTile.innerHTML = `
     <br>
     <img src="https://user-images.githubusercontent.com/88151743/153778199-6085b751-5f2d-45b8-b6f4-342bec5fbb5c.png" alt="water drop"/>
     <br>
@@ -44,12 +45,6 @@ const domUpdates = {
         ${hydration.week[4].date}: ${hydration.week[4].numOunces} oz<br><br>
         ${hydration.week[5].date}: ${hydration.week[5].numOunces} oz<br><br>
         ${hydration.week[6].date}: ${hydration.week[6].numOunces} oz</p><br><br>
-        <h3>Submit latest hydration data!</h3>
-        <label for="hydration-date">Date:</label><br>
-        <input class="hydration-date-input" type="text" placeholder=" format: 2020/01/01"></input><br>
-        <label for="numOunces-label">Ounces drank:</label><br>
-        <input class="hydration-ounces-input" type="text" placeholder=" 35"></input><br>
-        <br><br>
   `},
 
   displaySleepInfo(sleep) {
