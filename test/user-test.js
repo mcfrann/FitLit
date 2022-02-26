@@ -4,7 +4,7 @@ import UserRepository from '../src/UserRepository';
 import userData from '../src/data/users';
 import hydrationData from '../src/data/hydration-data.js';
 
-let userHydrationDataPoint = { userID: 4, date: '2019/06/15', numOunces: 85 };
+let userHydrationDataPoint = { userID: 4, date: '2020/01/16', numOunces: 28 };
 
 describe('User', () => {
   const userRepo = new UserRepository(userData);
