@@ -44,6 +44,12 @@ const domUpdates = {
         ${hydration.week[4].date}: ${hydration.week[4].numOunces} oz<br><br>
         ${hydration.week[5].date}: ${hydration.week[5].numOunces} oz<br><br>
         ${hydration.week[6].date}: ${hydration.week[6].numOunces} oz</p><br><br>
+        <h3>Submit latest hydration data!</h3>
+        <label for="hydration-date">Date:</label><br>
+        <input class="hydration-date-input" type="text" placeholder=" format: 2020/01/01"></input><br>
+        <label for="numOunces-label">Ounces drank:</label><br>
+        <input class="hydration-ounces-input" type="text" placeholder=" 35"></input><br>
+        <br><br>
   `},
 
   displaySleepInfo(sleep) {
@@ -58,6 +64,14 @@ const domUpdates = {
         <p>Average hours slept: ${sleep.calculateHrsSleptPerDayOverWeek('2019/06/15')} | Average sleep quality: ${sleep.calculateQualSleepPerDayOverWeek('2019/06/15')}<br>
       <h3>All time:</h3>
         <p>Average hours slept: ${sleep.getUserAverageHoursSleptPerDayTotal()} | Average sleep quality: ${sleep.getUserAverageQualitySleptPerDay()}</p><br>
+      <h3>Submit latest sleep data!</h3>
+        <label for="sleep-date">Date:</label><br>
+        <input class="sleep-date-input" type="text" placeholder=" format: 2020/01/01"></input><br>
+        <label for="sleep-hours">Hours Slept:</label><br>
+        <input class="sleep-hours-input" type="text" placeholder=" 3"></input><br>
+        <label for="sleep-quality">Sleep Quality:</label><br>
+        <input class="sleep-quality-input" type="text" placeholder=" 5.6"></input>
+        <br><br>
   `},
 
   displayActivityInfo(){
