@@ -16,7 +16,7 @@ describe('Activity', () => {
   user2.findUserHydration(hydrationData);
   user2.returnCurrentDate();
   user2.returnLastWeek();
-  
+
   const user3 = new User(userData[5], hydrationData);
   user3.findUserHydration(hydrationData);
   user3.returnCurrentDate();
@@ -115,14 +115,14 @@ describe('Activity', () => {
     let minutesOverWeek = activity.findMinutesActiveWeekAverage(user.date);
     let minutesOverWeek2 = activity2.findMinutesActiveWeekAverage(user2.date);
 
-    expect(minutesOverWeek).to.equal('156.4');
-    expect(minutesOverWeek2).to.equal('159.7');
+    expect(minutesOverWeek).to.equal('144.6');
+    expect(minutesOverWeek2).to.equal('167.9');
   });
 
   it('should determine if user step goal was reached on day', function () {
     let stepGoal = activity.determineStepGoalReached(user, user.date);
     let stepGoal2 = activity2.determineStepGoalReached(user2, user2.date);
-    
+
     expect(stepGoal).to.equal(true);
     expect(stepGoal2).to.equal(true);
   });
@@ -133,26 +133,26 @@ describe('Activity', () => {
 
     expect(daysExceeded[0]).to.eql({
       userID: 4,
-      date: '2019/06/16',
-      numSteps: 10689,
-      minutesActive: 204,
-      flightsOfStairs: 10
+      date: "2020/01/17",
+      flightsOfStairs: 49,
+      minutesActive: 267,
+      numSteps: 12051
     });
     expect(daysExceeded2[0]).to.eql({
       userID: 5,
-      date: '2019/06/15',
-      numSteps: 11374,
-      minutesActive: 213,
-      flightsOfStairs: 13
+      date: "2020/01/16",
+      flightsOfStairs: 16,
+      minutesActive: 260,
+      numSteps: 12540
     })
   });
 
   it('should find users alltime stair record', function () {
     let flights = activity.findStairRecord();
     let flights2 = activity2.findStairRecord();
-    
-    expect(flights).to.equal(50);
-    expect(flights2).to.equal(50);
+
+    expect(flights).to.equal(49);
+    expect(flights2).to.equal(46);
   });
 
   it('should find all users average stairs climbed', function () {
@@ -169,7 +169,7 @@ describe('Activity', () => {
 
   it('should find minutes active for all users on date', function () {
     let minutesActive = activity.findMinutesActiveOnDate(user.date);
-    
+
     expect(minutesActive).to.equal(147.96);
   });
 });
