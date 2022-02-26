@@ -26,8 +26,8 @@
             <div class="user-activity">
             </div>
             <div class="user-hydration">
-              <div class="display-hydration-data">
-              </div>
+              <!----changed innerHTML querySelector and added form--->
+              <div class="display-hydration-data"></div>
               <h3>Submit latest hydration data!</h3>
               <label for="hydration-date">Date:</label><br>
               <input class="hydration-date-input" type="text" placeholder=" format: 2020/01/01"></input><br>
@@ -39,6 +39,16 @@
           </section>
           <section class="sleep">
             <div class="user-sleep">
+              <div class="display-sleep-data"></div>
+              <h3>Submit latest sleep data!</h3>
+              <label for="sleep-date">Date:</label><br>
+              <input class="sleep-date-input" type="text" placeholder=" format: 2020/01/01"></input><br>
+              <label for="sleep-hours">Hours Slept:</label><br>
+              <input class="sleep-hours-input" type="text" placeholder=" 3"></input><br>
+              <label for="sleep-quality">Sleep Quality:</label><br>
+              <input class="sleep-quality-input" type="text" placeholder=" 5.6"></input><br><br>
+              <button class="submit-sleep-data">Submit!</button>
+              <br><br>
             </div>
           </section>
        </section>
