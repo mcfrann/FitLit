@@ -1,3 +1,5 @@
+import newHydration from "./scripts";
+
 const fetchAPI = {
   getUserData() {
     return fetch('http://localhost:3001/api/v1/users')
@@ -14,6 +16,14 @@ const fetchAPI = {
   getActivityData() {
     return fetch('http://localhost:3001/api/v1/activity')
         .then(response => response.json())
+  },
+  postHydrationData(newHydration) {
+    fetch('http://localhost:3001/api/v1/hydration', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newHydration)
+      // .then(response => response.json())
+    })
   },
 };
 
