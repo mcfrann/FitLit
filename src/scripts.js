@@ -5,6 +5,7 @@ import User from '../src/user';
 import Hydration from '../src/Hydration';
 import UserRepository from './UserRepository';
 import Sleep from '../src/Sleep';
+import Activity from '../src/Activity';
 import './css/styles.css';
 
 
@@ -13,10 +14,11 @@ let userData = null;
 let hydrationData = null;
 let sleepData = null;
 let activityData = null;
-let userRepo = null;
-let user = null;
-let hydration = null;
-let sleep = null;
+let currentUserRepo = null;
+let currentUser = null;
+let currentHydration = null;
+let currentSleep = null;
+let currentActivity = null;
 const fetchUserData = fetchAPI.getUserData();
 const fetchHydrationData = fetchAPI.getHydrationData();
 const fetchSleepData = fetchAPI.getSleepData();
@@ -30,8 +32,8 @@ const renderPage = () => {
       hydrationData = values[1].hydrationData;
       sleepData = values[2].sleepData;
       activityData = values[3].activityData;
-        generatePageUser(userData);
-    });
+      generatePageUser(userData);
+    })
 };
 
 const getRandomID = array => {
@@ -40,12 +42,14 @@ const getRandomID = array => {
 };
 
 const generatePageUser = (userData) => {
-  generateNewUser(userData, hydrationData, sleepData, activityData);
-  generateNewUserRepo(userData, user);
-  generateNewHydration(user.id, hydrationData, user.date);
-  generateNewSleep(user.id, sleepData);
-  user.generateFormattedFriends(user.friends, userData);
-  displayCurrentUser(user, hydration, userRepo);
+  generateNewUser(userData, hydrationData);
+  currentUser.generateFormattedFriends(currentUser.friends, userData);
+  generateNewUserRepo(userData, currentUser);
+  generateNewHydration(currentUser.id, hydrationData, currentUser.date);
+  generateNewSleep(currentUser.id, sleepData);
+  generateNewActivity(currentUser, currentUser.date, activityData);
+  runActivityMethods(activityData)
+  displayCurrentUser(currentUser, currentHydration, currentUserRepo, currentSleep, currentActivity);
 };
 
 const generateNewUser = (userData, hydrationData) => {
@@ -54,23 +58,23 @@ const generateNewUser = (userData, hydrationData) => {
   newUser.findUserHydration(hydrationData)
   newUser.returnCurrentDate();
   newUser.returnLastWeek();
-  return user = newUser;
+  return currentUser = newUser;
 };
 
 const generateNewUserRepo = (userData, user) => {
-  userRepo = new UserRepository(userData, user);
-  return userRepo = userRepo;
+  let userRepo = new UserRepository(userData, user);
+  return currentUserRepo = userRepo;
 };
 
 const generateNewHydration = () => {
-  const newHydration = new Hydration(user.id, hydrationData, user.date);
+  const newHydration = new Hydration(currentUser.id, hydrationData, currentUser.date);
   newHydration.findUserID(hydrationData);
   newHydration.calculateOuncesPerDayOverWeek();
-  return hydration = newHydration;
+  return currentHydration = newHydration;
 };
 
 const generateNewSleep = () => {
-  const newSleep = new Sleep(user.id, sleepData);
+  const newSleep = new Sleep(currentUser.id, sleepData);
   newSleep.findUserID(sleepData);
   newSleep.getUserAverageHoursSleptPerDayTotal();
   newSleep.getUserAverageQualitySleptPerDay();
@@ -79,17 +83,36 @@ const generateNewSleep = () => {
   newSleep.getAllUserSleepQuality();
   newSleep.calculateHrsSleptPerDayOverWeek('2019/06/15');
   newSleep.calculateQualSleepPerDayOverWeek('2019/06/15');
-  return sleep = newSleep;
+  return currentSleep = newSleep;
 };
 
-const displayCurrentUser = (user, hydration, userRepo) => {
+const generateNewActivity = (user, activityData) => {
+  const newActivity = new Activity(user, activityData);
+  return currentActivity = newActivity;
+}
+
+const runActivityMethods = (activityData) => {
+  currentActivity.findUserActivity(activityData);
+  currentActivity.findNumSteps();
+  currentActivity.findMinutesActive();
+  currentActivity.findStairsClimbed();
+  currentActivity.findMilesWalked('2019/06/15');
+  currentActivity.findMinutesActiveWeekAverage('2019/06/15');
+  currentActivity.determineStepGoalReached('2019/06/15');
+  currentActivity.findExceededGoalDays();
+  currentActivity.findStairRecord();
+  currentActivity.findAvgStairsAllUsers('2019/06/15');
+  currentActivity.findAvgStepsAllUsers('2019/06/15');
+  currentActivity.findMinutesActiveOnDate('2019/06/15');
+}
+
+const displayCurrentUser = (user, hydration, userRepo, sleep, activity) => {
   domUpdates.displayUserName(user);
   domUpdates.displayUserInfo(user, userRepo);
   domUpdates.displayHydrationInfo(user, hydration);
   domUpdates.displaySleepInfo(sleep);
-  domUpdates.displayActivityInfo();
+  domUpdates.displayActivityInfo(activity);
 };
-
 
 //---------------- Scripts ------------------------
 

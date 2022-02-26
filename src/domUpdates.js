@@ -60,13 +60,24 @@ const domUpdates = {
         <p>Average hours slept: ${sleep.getUserAverageHoursSleptPerDayTotal()} | Average sleep quality: ${sleep.getUserAverageQualitySleptPerDay()}</p><br>
   `},
 
-  displayActivityInfo(){
+  displayActivityInfo(hydration){
     return activityWidget.innerHTML = `
     <br>
-    <img src="https://img.icons8.com/ios/50/000000/walking--v1.png" alt="walking person emoji"/>
+      <img src="https://img.icons8.com/ios/50/000000/walking--v1.png" alt="person walking"/>
     <br>
-    <h2>Your Activity Data:</h2>
-  `}
+    <h2>Your Activity Stats:</h2>
+      <h3> Water consumption today: ${hydration.calculateOuncesPerDayByDate()} oz</h3>
+        <p>${hydration.week[0].date}: ${hydration.week[0].numOunces} oz<br><br>
+        ${hydration.week[1].date}: ${hydration.week[1].numOunces} oz<br><br>
+        ${hydration.week[2].date}: ${hydration.week[2].numOunces} oz<br><br>
+        ${hydration.week[3].date}: ${hydration.week[3].numOunces} oz<br><br>
+        ${hydration.week[4].date}: ${hydration.week[4].numOunces} oz<br><br>
+        ${hydration.week[5].date}: ${hydration.week[5].numOunces} oz<br><br>
+        ${hydration.week[6].date}: ${hydration.week[6].numOunces} oz</p><br><br>
+
+
+
+  `},
 }
 
 export default domUpdates

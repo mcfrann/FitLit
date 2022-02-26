@@ -6,6 +6,7 @@ class Activity {
     this.date = user.date;
     this.week = user.week;
     this.strideLength = user.strideLength
+    this.dailyStepGoal = user.dailyStepGoal
     this.userActivity = null;
     this.numSteps = null;
     this.minutesActive = null;
@@ -18,7 +19,8 @@ class Activity {
   }
 
   findNumSteps() {
-    this.numSteps = this.userActivity.find(data => data.date === this.date).numSteps
+    this.numSteps = this.userActivity.find(data => data.date === this.date).numSteps;
+    console.log(this.numSteps)
   }
 
   findMinutesActive() {
@@ -29,9 +31,9 @@ class Activity {
     this.flightsOfStairs = this.userActivity.find(data => data.date === this.date).flightsOfStairs
   }
 
-  findMilesWalked(date, userStrideLength) {
+  findMilesWalked(date) {
     let steps = this.userActivity.find(data => data.date === date).numSteps
-    let miles = (steps * userStrideLength) / 5280
+    let miles = (steps * this.strideLength) / 5280
     return this.milesWalked = miles.toFixed(2)
   }
 
@@ -45,16 +47,16 @@ class Activity {
       return (weekAverage / 7).toFixed(1);
   }
 
-  determineStepGoalReached(user, date) {
-    if (user.dailyStepGoal < this.userActivity.find(data => data.date === date).numSteps) {
+  determineStepGoalReached(date) {
+    if (this.dailyStepGoal < this.userActivity.find(data => data.date === date).numSteps) {
       return true
     } else {
       return false
     }
   }
 
-  findExceededGoalDays(user) {
-    return this.userActivity.filter(data => data.numSteps > user.dailyStepGoal)
+  findExceededGoalDays() {
+    return this.userActivity.filter(data => data.numSteps > this.dailyStepGoal)
   }
 
   findStairRecord() {
@@ -88,9 +90,5 @@ class Activity {
     return averageMinutes
   }
 }
-
-
-
-
 
 export default Activity;
