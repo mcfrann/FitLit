@@ -1,26 +1,14 @@
 import { expect } from 'chai';
 import Sleep from '../src/Sleep';
+import User from '../src/User';
 import sleepData from '../src/data/sleep-data'
+import userData from '../src/data/users'
+import hydrationData from '../src/data/hydration-data'
 
-let user =  {
-  "id": 4,
-  "name": "Mae Connelly",
-  "address": "28926 Schinner Islands, Turnermouth NE 23720-3230",
-  "email": "Marcos_Pollich@hotmail.com",
-  "strideLength": 3.1,
-  "dailyStepGoal": 4000,
-  "friends": [
-    48,
-    7,
-    44,
-    8,
-  ],
-};
-
-let userID = user.id;
 
 describe('Sleep', () => {
-  const sleep = new Sleep(userID, sleepData);
+  const user = new User(userData[3], hydrationData);
+  const sleep = new Sleep(4, sleepData);
 
   it('should be a function', function () {
     expect(Sleep).to.be.a('function');
@@ -41,12 +29,12 @@ describe('Sleep', () => {
   it('should calculate average hours slept per day', function () {
     sleep.findUserID(sleepData)
     const avg = sleep.getUserAverageHoursSleptPerDayTotal();
-    expect(avg).to.equal('7.4');
+    expect(avg).to.equal('7.1');
   });
 
   it('should calculate average quality slept per day', function () {
     const avg = sleep.getUserAverageQualitySleptPerDay();
-    expect(avg).to.equal("3.1");
+    expect(avg).to.equal("2.6");
   });
 
   it('should find hours slept in a day', function () {
@@ -71,6 +59,6 @@ describe('Sleep', () => {
 
   it("should calculate average sleep quality for all users", function () {
     const avgQualAllUsers = sleep.getAllUserSleepQuality();
-    expect(avgQualAllUsers).to.equal('3.0');
+    expect(avgQualAllUsers).to.equal('2.9');
   });
 });
