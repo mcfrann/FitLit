@@ -1,12 +1,12 @@
 <!DOCTYPE  html>
 <html lang="en" dir="ltr">
-  <head>
+  <header>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Fitlit</title>
     <link rel="stylesheet" href="../src/css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:300" rel="stylesheet">
-  </head>
+  </header>
   <video class="background-video" playsinline autoplay muted loop poster="geena.jpg">
   <source src="https://user-images.githubusercontent.com/88151743/153723450-2a744e28-1a6d-4cec-8ae0-51bdd7b28d83.mp4" type="video/mp4" alt="video of wheatgrass in the wind">
   </video>
@@ -26,14 +26,13 @@
             <div class="user-activity">
             </div>
             <div class="user-hydration">
-              <!----changed innerHTML querySelector and added form--->
               <div class="display-hydration-data"></div>
               <h3>Submit latest hydration data!</h3>
               <form class="hydration-form">
                 <label for="hydration-date">Date:</label><br>
-                <input class="hydration-date-input" type="text" placeholder=" format: 2020/01/01" required/><br>
+                <input class="hydration-date-input" id="hydration-date" type="text" placeholder=" format: 2020/01/01" required/><br>
                 <label for="numOunces-label">Ounces drank:</label><br>
-                <input class="hydration-ounces-input" type="text" placeholder=" 35" required/><br><br>
+                <input class="hydration-ounces-input" id="numOunces-label" type="text" placeholder=" 35" required/><br><br>
                 <input type="submit" value="Submit!">
               </form>
               <br><br>
@@ -45,11 +44,11 @@
               <h3>Submit latest sleep data!</h3>
               <form class="sleep-form">
                 <label for="sleep-date">Date:</label><br>
-                <input class="sleep-date-input" type="text" placeholder=" format: 2020/01/01" required/><br>
+                <input class="sleep-date-input" id="sleep-date" type="text" placeholder=" format: 2020/01/01" required/><br>
                 <label for="sleep-hours">Hours Slept:</label><br>
-                <input class="sleep-hours-input" type="text" placeholder=" 3" required/><br>
+                <input class="sleep-hours-input" id="sleep-hours" type="text" placeholder=" 3" required/><br>
                 <label for="sleep-quality">Sleep Quality:</label><br>
-                <input class="sleep-quality-input" type="text" placeholder=" 5.6" required/><br><br>
+                <input class="sleep-quality-input" id="sleep-quality" type="text" placeholder=" 5.6" required/><br><br>
                 <button class="submit-sleep-data">Submit!</button>
               </form>
               <br><br>
