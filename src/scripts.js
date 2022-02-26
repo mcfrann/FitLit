@@ -13,9 +13,10 @@ import './css/styles.css';
 const hydrationForm = document.querySelector('.hydration-form')
 const hydrationDateInput = document.querySelector('.hydration-date-input');
 const hydrationOuncesInput = document.querySelector('.hydration-ounces-input');
-// const sleepDateInput = document.querySelector('.sleep-date-input');
-// const sleepHoursInput = document.querySelector('.sleep-hours-input');
-// const sleepQualInput = document.querySelector('.sleep-quality-input');
+const sleepForm = document.querySelector('.sleep-form');
+const sleepDateInput = document.querySelector('.sleep-date-input');
+const sleepHoursInput = document.querySelector('.sleep-hours-input');
+const sleepQualInput = document.querySelector('.sleep-quality-input');
 
 
 //----------------- Global Vars ------------------
@@ -116,6 +117,20 @@ hydrationForm.addEventListener('submit', (e) => {
   };
   fetchAPI.postHydrationData(newHydro);
   console.log(newHydro)
+  e.target.reset();
+});
+
+sleepForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const newSleep = {
+    "userID": user.id,
+    "date": sleepDateInput.value,
+    "hoursSlept": sleepHoursInput.value,
+    "sleepQuality": sleepQualInput.value
+  };
+  fetchAPI.postSleepData(newSleep);
+  console.log(newSleep)
   e.target.reset();
 });
 

@@ -17,7 +17,6 @@ const fetchAPI = {
     return fetch('http://localhost:3001/api/v1/activity')
         .then(response => response.json())
   },
-  //ADDED:
   postHydrationData(newHydro) {
     fetch('http://localhost:3001/api/v1/hydration', {
       method: 'POST',
@@ -25,6 +24,13 @@ const fetchAPI = {
       body: JSON.stringify(newHydro)
     })
   },
+  postSleepData(newSleep) {
+    fetch('http://localhost:3001/api/v1/sleep'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newSleep)
+    }
+  }
 };
 
 export default fetchAPI;
