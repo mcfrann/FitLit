@@ -20,7 +20,7 @@ let user =  {
 let userID = user.id;
 
 describe('Hydration', () => {
-  const hydration = new Hydration(userID, hydrationData, "2019/06/15");
+  const hydration = new Hydration(userID, hydrationData, "2020/01/16");
 
   it('should be a function', function () {
     expect(Hydration).to.be.a('function');
@@ -39,7 +39,7 @@ describe('Hydration', () => {
   });
 
   it('should show date', function () {
-    expect(hydration.date).to.equal("2019/06/15");
+    expect(hydration.date).to.equal("2020/01/16");
   });
 
   it('should show week', function () {
@@ -58,12 +58,13 @@ describe('Hydration', () => {
 
   it('should calculate average water consumed per day', function () {
     const avg = hydration.calculateAvgWater();
-    expect(avg).to.equal('63.1');
+    expect(avg).to.equal('65.0');
   });
 
   it('should calculate ounces per day by date', function () {
-    const ouncesPerDay = hydration.calculateOuncesPerDayByDate("2019/06/15");
-    expect(ouncesPerDay).to.equal(85);
+    const ouncesPerDay = hydration.calculateOuncesPerDayByDate("2020/01/16");
+    console.log(ouncesPerDay)
+    expect(ouncesPerDay).to.equal(28);
   });
 
   it('should calculate ounces per day over a week', function () {
