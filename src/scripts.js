@@ -112,11 +112,10 @@ hydrationForm.addEventListener('submit', (e) => {
   const formData = new FormData(e.target);
   const newHydro = {
     "userID": user.id,
-    "date": hydrationDateInput.value,
+    "date": hydrationDateInput.value.replaceAll('-', '/'),
     "numOunces": hydrationOuncesInput.value
   };
   fetchAPI.postHydrationData(newHydro);
-  console.log(newHydro)
   e.target.reset();
 });
 
@@ -125,13 +124,10 @@ sleepForm.addEventListener('submit', (e) => {
   const formData = new FormData(e.target);
   const newSleep = {
     "userID": user.id,
-    "date": sleepDateInput.value,
+    "date": sleepDateInput.value.replaceAll('-', '/'),
     "hoursSlept": sleepHoursInput.value,
     "sleepQuality": sleepQualInput.value
   };
   fetchAPI.postSleepData(newSleep);
-  console.log(newSleep)
   e.target.reset();
 });
-
-
