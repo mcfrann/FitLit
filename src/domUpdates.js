@@ -2,8 +2,9 @@ const userInfo = document.querySelector('.user-info');
 const userName = document.querySelector('.user-name');
 const welcomeMessage = document.querySelector('.welcome-message');
 const hydrationWidget = document.querySelector('.user-hydration');
-const sleepWidget = document.querySelector('.user-sleep');
+const sleepWidget = document.querySelector('.display-sleep-data');
 const activityWidget = document.querySelector('.user-activity');
+const displayHydrationTile = document.querySelector('.display-hydration-data')
 
 
 const domUpdates = {
@@ -31,7 +32,7 @@ const domUpdates = {
   `},
 
   displayHydrationInfo(user, hydration) {
-    return hydrationWidget.innerHTML = `
+    return displayHydrationTile.innerHTML = `
     <br>
     <img src="https://user-images.githubusercontent.com/88151743/153778199-6085b751-5f2d-45b8-b6f4-342bec5fbb5c.png" alt="water drop"/>
     <br>

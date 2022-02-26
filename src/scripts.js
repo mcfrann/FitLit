@@ -7,6 +7,17 @@ import UserRepository from './UserRepository';
 import Sleep from '../src/Sleep';
 import './css/styles.css';
 
+//------------- Query Selectors -------------------
+
+//ADDED:
+const hydrationForm = document.querySelector('.hydration-form')
+const hydrationDateInput = document.querySelector('.hydration-date-input');
+const hydrationOuncesInput = document.querySelector('.hydration-ounces-input');
+const sleepForm = document.querySelector('.sleep-form');
+const sleepDateInput = document.querySelector('.sleep-date-input');
+const sleepHoursInput = document.querySelector('.sleep-hours-input');
+const sleepQualInput = document.querySelector('.sleep-quality-input');
+
 
 //----------------- Global Vars ------------------
 let userData = null;
@@ -90,7 +101,37 @@ const displayCurrentUser = (user, hydration, userRepo) => {
   domUpdates.displayActivityInfo();
 };
 
-
 //---------------- Scripts ------------------------
 
 window.onload = (event) => (event, renderPage());
+
+//---------------- Post ----------------------
+
+hydrationForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const newHydro = {
+    "userID": user.id,
+    "date": hydrationDateInput.value,
+    "numOunces": hydrationOuncesInput.value
+  };
+  fetchAPI.postHydrationData(newHydro);
+  console.log(newHydro)
+  e.target.reset();
+});
+
+sleepForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const newSleep = {
+    "userID": user.id,
+    "date": sleepDateInput.value,
+    "hoursSlept": sleepHoursInput.value,
+    "sleepQuality": sleepQualInput.value
+  };
+  fetchAPI.postSleepData(newSleep);
+  console.log(newSleep)
+  e.target.reset();
+});
+
+
