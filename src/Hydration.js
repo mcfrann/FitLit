@@ -1,15 +1,9 @@
 class Hydration {
-    constructor(userID, hydrationData, date, week) {
+    constructor(userID, date, numOunces) {
         this.userID = userID;
-        this.rawData = hydrationData;
-        this.userHydrationData = null;
         this.date = date;
-        this.week = null;
+        this.numOunces = numOunces;
     };
-
-    findUserID(hydrationData) {
-        this.userHydrationData = hydrationData.filter(data => data.userID === this.userID);
-    }
 
     calculateAvgWater() {
         let waterAverage = this.userHydrationData.reduce((acc, userLog) => {

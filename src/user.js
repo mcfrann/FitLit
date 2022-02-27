@@ -1,20 +1,16 @@
 class User {
-  constructor(user, hydration, sleep, activity) {
-    this.id = user.id;
-    this.name = user.name;
-    this.address = user.address;
-    this.email = user.email;
-    this.strideLength = user.strideLength;
-    this.dailyStepGoal = user.dailyStepGoal;
-    this.friends = user.friends;
-    this.formattedFriends = null;
-    this.userHydration = null;
-    this.date = null;
-    this.week = null;
-  };
-
-  findUserHydration(hydration) {
-    this.userHydration = hydration.filter(data => data.userID === this.id);
+  constructor(id, name, address, email, strideLength, dailyStepGoal, friends) {
+    this.id = id;
+    this.name = name;
+    this.address = address;
+    this.email = email;
+    this.strideLength = strideLength;
+    this.dailyStepGoal = dailyStepGoal;
+    this.friends = friends;
+    // this.formattedFriends = null;
+    // this.userHydration = user.userHydration | null;
+    // this.date = null;
+    // this.week = null;
   };
 
   returnFirstName() {
@@ -22,6 +18,7 @@ class User {
   };
 
   returnCurrentDate() {
+    console.log(this.userHydration)
     return this.date = this.userHydration[this.userHydration.length - 1].date;
   };
 
@@ -29,10 +26,10 @@ class User {
     return this.week = this.userHydration.map(entry => entry.date).reverse().filter((entry, index) => (index <= 6)).reverse();
   };
 
-  generateFormattedFriends(userFriends, userData) {
+  generateFormattedFriends() {
     let friendsNames = [];
-    userFriends.forEach(id => {
-      userData.find(user => {
+    this.friends.forEach(id => {
+      this.userData.find(user => {
         if(id === user.id){
           return friendsNames.push(user.name);
         };

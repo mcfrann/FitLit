@@ -1,14 +1,11 @@
 class Sleep {
-    constructor(userID, sleepData) {
+    constructor(userID, date, hoursSlept, sleepQuality) {
         this.userID = userID;
-        this.rawData = sleepData;
-        this.userSleepData = null;
+        this.date = date;
+        this.hoursSlept = hoursSlept;
+        this.sleepQuality = sleepQuality;
     };
 
-    findUserID(sleepData) {
-        this.userSleepData = (sleepData.filter(data => data.userID === this.userID));
-    };
-    
     getUserAverageHoursSleptPerDayTotal() {
         let sleptAverage = this.userSleepData.reduce((acc, userLog) => {
             return acc += userLog.hoursSlept / this.userSleepData.length;

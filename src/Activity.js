@@ -1,21 +1,13 @@
 import activityData from "./data/activity-data";
 
 class Activity {
-  constructor(user, date, activityData) {
-    this.userID = user.id;
-    this.date = user.date;
-    this.week = user.week;
-    this.strideLength = user.strideLength
-    this.dailyStepGoal = user.dailyStepGoal
-    this.userActivity = null;
-    this.numSteps = null;
-    this.minutesActive = null;
-    this.flightsOfStairs = null;
-    this.milesWalked = null;
-  }
-
-  findUserActivity(activityData) {
-    this.userActivity = activityData.filter(data => data.userID === this.userID);
+  constructor(userID, date, numSteps, minutesActive, flightsOfStairs) {
+    this.userID = userID;
+    this.date = date;
+    this.numSteps = numSteps;
+    this.minutesActive = minutesActive;
+    this.flightsOfStairs = flightsOfStairs;
+    // this.milesWalked = null;
   }
 
   findNumSteps() {

@@ -1,12 +1,21 @@
 class UserRepository {
-  constructor(userData, user) {
+  constructor(userData, hydrationData, sleepData, activityData) {
     this.userData = userData;
-    this.currentUser = user;
+    this.hydrationData = hydrationData;
+    this.sleepData = sleepData;
+    this.activityData = activityData;
   };
 
-  findID(id) {
-    this.currentUser = (this.userData.find(user => user.id === id));
-  };
+  buildUserDataArrays() {
+    const updatedUserData = [...this.userData]
+    updatedUserData.map(user => {
+      user.hydrationData = this.hydrationData.filter(data => data.userID === user.id)
+      user.sleepData = this.sleepData.filter(data => data.userID === user.id)
+      user.activityData = this.activityData.filter(data => data.userID === user.id)
+    })
+    this.userData = updatedUserData
+    console.log(updatedUserData)
+  }
 
   findAverageStepGoal() {
     let average = this.userData.reduce((acc, user) => {
