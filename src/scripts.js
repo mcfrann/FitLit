@@ -109,7 +109,6 @@ window.onload = (event) => (event, renderPage());
 
 hydrationForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const formData = new FormData(e.target);
   const newHydro = {
     "userID": user.id,
     "date": hydrationDateInput.value.replaceAll('-', '/'),
@@ -121,7 +120,6 @@ hydrationForm.addEventListener('submit', (e) => {
 
 sleepForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const formData = new FormData(e.target);
   const newSleep = {
     "userID": user.id,
     "date": sleepDateInput.value.replaceAll('-', '/'),
