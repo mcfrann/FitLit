@@ -8,27 +8,56 @@ import Sleep from '../src/Sleep';
 import Activity from '../src/Activity';
 import './css/styles.css';
 
-
 //----------------- Global Vars ------------------
-// let globalUserData = null;
-// let globalHydrationData = null;
-// let globalSleepData = null;
-// let globalActivityData = null;
-
 let globalCurrentUserRepo = null;
-// let globalCurrentUser = null;
-// let globalCurrentHydration = null;
-// let globalCurrentSleep = null;
-// let globalCurrentActivity = null;
 
 const fetchUserData = fetchAPI.getUserData();
 const fetchHydrationData = fetchAPI.getHydrationData();
 const fetchSleepData = fetchAPI.getSleepData();
 const fetchActivityData = fetchAPI.getActivityData();
 
+const renderPage = () => {
+  Promise.all([fetchUserData, fetchHydrationData, fetchSleepData, fetchActivityData])
+  .then(values => {
+    const userData = values[0].userData.map(data => new User(data.id, data.name, data.address, data.email, data.strideLength, data.dailyStepGoal, data.friends))
+    const hydrationData = values[1].hydrationData.map(data => new Hydration(data.userID, data.date, data.numOunces))
+    const sleepData = values[2].sleepData.map(data => new Sleep(data.userID, data.date, data.hoursSlept, data.sleepQuality))
+    const activityData = values[3].activityData.map(data => new Activity(data.userID, data.date, data.numSteps, data.minutesActive, data.flightsOfStairs))
+    generateNewUserRepo(userData, hydrationData, sleepData, activityData)
+    globalCurrentUserRepo.buildUserDataArrays()
+    globalCurrentUserRepo.determineCurrentUser(getRandomID(globalCurrentUserRepo.userData).id)
+    globalCurrentUserRepo.findAverageStepGoal()
+    globalCurrentUserRepo.currentUser.returnFirstName()
+    globalCurrentUserRepo.generateFormattedFriends()
+    console.log(globalCurrentUserRepo)
+  });
+};
+
+const generateNewUserRepo = (userData, hydrationData, sleepData, activityData) => {
+  let userRepo = new UserRepository(userData, hydrationData, sleepData, activityData);
+  return globalCurrentUserRepo = userRepo;
+};
+
+const getRandomID = array => {
+  const randomIndex = array[Math.floor(Math.random() * array.length)];
+  return randomIndex;
+};
+
+window.onload = (event) => (event, renderPage());
 //---------------- Functions --------------------
+// let globalUserData = null;
+// let globalHydrationData = null;
+// let globalSleepData = null;
+// let globalActivityData = null;
+
+// let globalCurrentUser = null;
+// let globalCurrentHydration = null;
+// let globalCurrentSleep = null;
+// let globalCurrentActivity = null;
+
+
 // const renderPage = () => {
-//   Promise.all([fetchUserData, fetchHydrationData, fetchSleepData, fetchActivityData])
+  //   Promise.all([fetchUserData, fetchHydrationData, fetchSleepData, fetchActivityData])
 //   .then(values => {
 //     globalCurrentUser = generateNewUser(values[0].userData, values[1].hydrationData)
 //     generateNewUserRepo(values[0].userData, globalCurrentUser)
@@ -46,20 +75,16 @@ const fetchActivityData = fetchAPI.getActivityData();
   // .then(_ => generatePageUser(userData))
 // };
 
-const getRandomID = array => {
-  const randomIndex = array[Math.floor(Math.random() * array.length)];
-  return randomIndex;
-};
 
-const generateNewUser = (userData, hydrationData) => {
-  const getRandomUser = getRandomID(userData);
-  const newUser = new User(getRandomUser, userData, hydrationData)
-    newUser.findUserHydration(hydrationData)
-    newUser.generateFormattedFriends()
-    newUser.returnCurrentDate()
-    newUser.returnLastWeek()
-  return newUser;
-};
+// const generateNewUser = (userData, hydrationData) => {
+//   const getRandomUser = getRandomID(userData);
+//   const newUser = new User(getRandomUser, userData, hydrationData)
+//     newUser.findUserHydration(hydrationData)
+//     newUser.generateFormattedFriends()
+//     newUser.returnCurrentDate()
+//     newUser.returnLastWeek()
+//   return newUser;
+// };
 // const generatePageUser = (userData) => {
   //   generateNewUser(userData, hydrationData);
   //   currentUser.generateFormattedFriends(currentUser.friends, userData);
@@ -138,7 +163,6 @@ const generateNewUser = (userData, hydrationData) => {
           
     //       //---------------- Scripts ------------------------
           
-          window.onload = (event) => (event, renderPage());
           
     //       //---------------------------------------------------------------------  
     //       const instantiateClasses = (userData, hydrationData, sleepData, activityData) => {
@@ -214,21 +238,3 @@ const generateNewUser = (userData, hydrationData) => {
     //         globalCurrentActivity.findUserActivity(activityData)  
     //       }
 //-------------------------------------------------
-
-const renderPage = () => {
-  Promise.all([fetchUserData, fetchHydrationData, fetchSleepData, fetchActivityData])
-  .then(values => {
-    const userData = values[0].userData.map(data => new User(data.id, data.name, data.address, data.email, data.strideLength, data.dailyStepGoal, data.friends))
-    const hydrationData = values[1].hydrationData.map(data => new Hydration(data.userID, data.date, data.numOunces))
-    const sleepData = values[2].sleepData.map(data => new Sleep(data.userID, data.date, data.hoursSlept, data.sleepQuality))
-    const activityData = values[3].activityData.map(data => new Activity(data.userID, data.date, data.numSteps, data.minutesActive, data.flightsOfStairs))
-    generateNewUserRepo(userData, hydrationData, sleepData, activityData)
-    globalCurrentUserRepo.buildUserDataArrays()
-    console.log(globalCurrentUserRepo)
-  });
-};
-           
-const generateNewUserRepo = (userData, hydrationData, sleepData, activityData) => {
-  let userRepo = new UserRepository(userData, hydrationData, sleepData, activityData);
-  return globalCurrentUserRepo = userRepo;
-};

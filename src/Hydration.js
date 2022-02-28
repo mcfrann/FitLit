@@ -5,7 +5,7 @@ class Hydration {
         this.numOunces = numOunces;
     };
 
-    calculateAvgWater() {
+    calculateAvgWater(numOunces, duration) {
         let waterAverage = this.userHydrationData.reduce((acc, userLog) => {
             return acc += userLog.numOunces / this.userHydrationData.length;
         }, 0);
