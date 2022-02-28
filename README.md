@@ -23,9 +23,11 @@ This wellness application is a group project built by [Geena Jackson](https://gi
 
 ## Setup:
 
-To download and use FitLit, you can fork and/or clone it to your local machine into your desired directory using the terminal - git clone [repo link]. Next navigate (cd) into that directory and enter the following command to open FitLit in your browser - open src/index.html
+To access this project on your local machine, fork this repo and `git clone` SSH down. `cd` into the folder and run `npm install` to install dependencies.
 
-Alternatively, click the following link to be sent to the app's deployed site: [FitLit]().
+Go to the fitlit-api repo [here](https://github.com/turingschool-examples/fitlit-api). In a separate terminal tab, `git clone` this repo down to your machine in a different folder. `cd` into it then run `npm install`, then `npm start`. You now have access to the local server this project uses for its data.
+
+Now you can go back to the terminal tab for this project and run `npm start`. Copy and paste the provided web address into your browser and the site should have full functionality!
 
 ## Wins:
 
@@ -35,3 +37,4 @@ Alternatively, click the following link to be sent to the app's deployed site: [
 ## Challenges:
 - One of the teammates was out sick for a day, while going through the most difficult part of the project. However, because of our DTR that we set at the beginning, our team successfully communicated and we were able to finish the project before the given deadline.
 - Diving into fetch API head first was a steep learning curve. Luckily with the help of mentors, Turing alumni, and cohort mates, we feel well-versed and better prepared for what's ahead.
+- Upon the start of the second part of this project, our team realized that there was a more simple way to update the data by including most of the class methods in the userRepo versus having them spread out among all the classes, however we ran out of time to implement our realization before the due date. The final submission is an unfinished project that does not display the activity data to the page due to a bug.
